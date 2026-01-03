@@ -52,7 +52,7 @@
                                             </h4>
                                         </div>
                                         <div
-                                            class="prose prose-sm prose-slate max-w-none text-muted-foreground leading-relaxed italic">
+                                            class="prose prose-sm prose-slate max-w-none text-muted-foreground leading-relaxed">
                                             {!! $subCpmk->description !!}
                                         </div>
                                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="max-w-7xl mx-auto px-4 py-32">
         <nav class="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
             <a href="{{ route('index') }}" class="hover:text-primary font-medium">Beranda</a>
 

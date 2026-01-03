@@ -1,4 +1,4 @@
-<header class="sticky top-0 w-full z-50 bg-card/80 border-b border-border shadow-sm rounded-b-3xl backdrop-blur-md">
+<header class="fixed top-0 w-full z-50 bg-card/80 border-b border-border shadow-sm rounded-b-3xl">
     <!-- Permanen rounded & blur -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-20">

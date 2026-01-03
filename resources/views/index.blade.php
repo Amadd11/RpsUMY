@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="min-h-screen flex items-center overflow-hidden bg-[#0A0F1E] text-white px-4 py-20">
+    <section class="min-h-screen flex items-center overflow-hidden bg-[#0A0F1E] text-white px-4 py-32 relative">
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 z-0">
             <!-- Blobs -->

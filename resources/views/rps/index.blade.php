@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto px-4 py-6">
+    <div class="mx-auto px-4 py-32">
         <!-- Hero Header -->
         <div
             class="relative mb-8 overflow-hidden rounded-3xl bg-linear-to-br from-primary to-primary/80 p-8 text-primary-foreground shadow-xl">
@@ -11,9 +11,9 @@
                     <div class="flex items-center gap-3 mb-3">
                         <div
                             class="bg-primary-foreground/20 backdrop-blur-md rounded-xl px-3 py-1 border border-primary-foreground/30">
-                            <span class="text-sm font-bold text-primary-foreground/80">{{ $course->kode_mk }}</span>
+                            <span class="text-sm font-bold text-primary-foreground/80">{{ $course->code }}</span>
                         </div>
-                        <div class="text-sm font-medium opacity-90">{{ $course->sks }} SKS • Semester
+                        <div class="text-sm font-medium opacity-90">{{ $course->sks }} SKS Semester
                             {{ $course->semester }}</div>
                     </div>
                     <h1 class="text-3xl md:text-4xl lg:text-5xl font-black mb-2 tracking-tight">

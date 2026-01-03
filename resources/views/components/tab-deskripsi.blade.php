@@ -11,7 +11,7 @@
 
     <!-- Informasi Umum Grid -->
     <div class="space-y-4">
-        <h4 class="text-base font-semibold text-foreground">
+        <h4 class="text-lg font-bold tracking-tight text-foreground">
             Informasi Umum
         </h4>
 
@@ -53,7 +53,7 @@
 
     <!-- Konten Deskripsi -->
     <div class="space-y-4">
-        <h4 class="text-base font-semibold text-foreground">
+        <h4 class="text-lg font-bold tracking-tight text-foreground">
             Detail Deskripsi
         </h4>
         <div class="p-6 bg-card border border-border/50 rounded-2xl shadow-sm">
@@ -72,10 +72,7 @@
     <!-- Materi Pembelajaran Section -->
     <div class="space-y-4">
         <div class="flex items-center gap-3">
-            <div class="p-2 bg-linear-to-br from-secondary to-secondary/80 rounded-xl shadow-md">
-                <iconify-icon icon="solar:clipboard-list-bold" class="size-5 text-secondary-foreground"></iconify-icon>
-            </div>
-            <h4 class="text-xl font-bold tracking-tight text-foreground">
+            <h4 class="text-lg font-bold tracking-tight text-foreground">
                 Materi Pembelajaran
             </h4>
         </div>
