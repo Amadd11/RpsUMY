@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Cpls\Tables;
+namespace App\Filament\Resources\Dokumens\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CplsTable
+class DokumensTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,16 +17,12 @@ class CplsTable
                 TextColumn::make('prodi.name')
                     ->label('Program Studi')
                     ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('code')
+                    ->sortable(),
+                TextColumn::make('judul')
+                    ->label('Judul Dokumen')
                     ->searchable(),
-                TextColumn::make('description')
-                    ->html()
-                    ->wrap()
-                    ->label('Deskripsi'),
-                TextColumn::make('taksonomi')
-                    ->badge(),
+                TextColumn::make('file')
+                    ->label('Nama File'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

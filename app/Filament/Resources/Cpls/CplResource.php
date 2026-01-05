@@ -23,8 +23,8 @@ class CplResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 
     protected static ?string $navigationLabel = 'Capaian Lulusan (CPL)';
-    protected static string|UnitEnum|null $navigationGroup = 'Akademik';
     protected static ?string $pluralModelLabel = 'CPL';
+    protected static string|UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $recordTitleAttribute = 'code';
 

@@ -2,16 +2,13 @@
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 py-32 ">
-
-
         <!-- Hero Section -->
         <div class="mb-8">
             <h1
-                class="text-4xl md:text-5xl font-bold mb-3 font-heading bg-linear-to-r from-primary to-chart-3 bg-clip-text text-transparent">
-                Fakultas Ekonomi & Bisnis
-            </h1>
+                class="text-4xl md:text-5xl font-bold mb-3 font-heading bg-linear-to-r from-primary to-chart-3 bg-clip-text pb-2 text-transparent">
+                Program Studi di {{ $fakultas->name }} </h1>
             <p class="text-lg text-muted-foreground max-w-3xl">
-                Jelajahi program studi di Fakultas Ekonomi & Bisnis yang menawarkan pendidikan berkualitas tinggi di bidang
+                Jelajahi program studi di {{ $fakultas->name }} yang menawarkan pendidikan berkualitas tinggi di bidang
                 ekonomi, manajemen, dan bisnis dengan pendekatan inovatif dan berbasis syariah.
             </p>
         </div>

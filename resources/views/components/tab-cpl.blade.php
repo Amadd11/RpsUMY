@@ -1,7 +1,7 @@
 <div class="bg-card rounded-3xl p-6 md:p-8 shadow-xl border border-border/50 space-y-10">
 
     <div class="flex items-center gap-3">
-        <div class="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-xl shadow-md">
+        <div class="p-2 bg-linear-to-br from-primary to-primary/80 rounded-xl shadow-md">
             <iconify-icon icon="solar:target-bold" class="size-5 text-primary-foreground"></iconify-icon>
         </div>
         <h2 class="text-xl font-bold tracking-tight text-foreground">
@@ -69,8 +69,8 @@
     </div>
 
     {{-- ================= CPL TERPILIH ================= --}}
-    @if ($rps->cpls->isNotEmpty())
-        <div class="mt-12 p-1 bg-gradient-to-br from-primary/20 via-transparent to-secondary/10 rounded-[2rem]">
+    @if ($rps && $rps->cpls->isNotEmpty())
+        <div class="mt-12 p-1 bg-linear-to-br from-primary/20 via-transparent to-secondary/10 rounded-4xl">
             <div class="bg-card/80 backdrop-blur-sm border border-white/20 shadow-2xl rounded-[1.8rem] p-6 md:p-8">
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
@@ -88,29 +88,28 @@
                         <iconify-icon icon="solar:chart-pie-bold" class="size-5 text-secondary"></iconify-icon>
                         <span class="text-sm font-medium text-muted-foreground">Total Bobot:</span>
                         <span class="text-lg font-black text-foreground">
-                            {{ number_format($totalBobot, 1) }}%
+                            {{ number_format($totalBobotCpl, 1) }}%
                         </span>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 gap-4">
-                    @foreach ($rps->cpls as $selected)
-                        @php $color = $selected->bg_color ?? '#3b82f6'; @endphp
-
+                    @foreach ($rps->cpls as $cpl)
                         <div class="group flex items-start gap-4 p-5 bg-white border border-border/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
-                            style="border-right: 4px solid {{ $color }};">
-                            <div class="mt-1 p-1.5 rounded-lg" style="background-color: {{ $color }}15;">
+                            style="border-right: 4px solid {{ $cpl->bg_color ?? '#3b82f6' }};">
+                            <div class="mt-1 p-1.5 rounded-lg"
+                                style="background-color: {{ $cpl->bg_color ?? '#3b82f6' }}15;">
                                 <iconify-icon icon="solar:verified-check-bold" class="size-5"
-                                    style="color: {{ $color }}"></iconify-icon>
+                                    style="color: {{ $cpl->bg_color ?? '#3b82f6' }}"></iconify-icon>
                             </div>
 
                             <div class="flex-1">
                                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                                     <span class="font-bold text-foreground tracking-tight">
-                                        {{ $selected->code }}
+                                        {{ $cpl->code }}
                                     </span>
 
-                                    @if ($selected->pivot?->bobot !== null)
+                                    @if ($cpl->pivot?->bobot !== null)
                                         <div
                                             class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-secondary/10 border border-secondary/20">
                                             <span
@@ -118,14 +117,14 @@
                                                 Weight
                                             </span>
                                             <span class="text-xs font-bold text-foreground">
-                                                {{ number_format($selected->pivot->bobot, 1) }}%
+                                                {{ number_format($cpl->pivot->bobot, 1) }}%
                                             </span>
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="text-sm leading-relaxed text-muted-foreground/90 font-medium italic">
-                                    {!! $selected->description !!}
+                                    {!! $cpl->description !!}
                                 </div>
                             </div>
                         </div>

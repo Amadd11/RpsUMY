@@ -6,7 +6,7 @@
         <!-- Hero Section -->
         <div class="mb-8">
             <h1
-                class="text-4xl md:text-5xl font-bold mb-3 font-heading bg-linear-to-r from-primary to-chart-3 bg-clip-text text-transparent">
+                class="text-4xl md:text-5xl font-bold mb-3 font-heading bg-linear-to-r from-primary to-chart-3 bg-clip-text pb-2 text-transparent">
                 Rencana Pembelajaran Semester (RPS)
             </h1>
             <p class="text-lg text-muted-foreground max-w-2xl">

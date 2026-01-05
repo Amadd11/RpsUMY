@@ -30,9 +30,9 @@
                     class="px-4 py-2 rounded-lg text-base font-heading font-semibold transition-all duration-300 {{ request()->routeIs('about') ? 'bg-primary text-primary-foreground shadow-md' : 'text-foreground hover:bg-secondary hover:text-primary hover:shadow-sm' }}">
                     Tentang
                 </a>
-                <a href="#"
-                    class="px-4 py-2 rounded-lg text-base font-heading font-semibold transition-all duration-300 {{ request()->routeIs('contact') ? 'bg-primary text-primary-foreground shadow-md' : 'text-foreground hover:bg-secondary hover:text-primary hover:shadow-sm' }}">
-                    Kontak
+                <a href="{{ route('dokumen.index') }}"
+                    class="px-4 py-2 rounded-lg text-base font-heading font-semibold transition-all duration-300 {{ request()->routeIs('dokumen.index') ? 'bg-primary text-primary-foreground shadow-md' : 'text-foreground hover:bg-secondary hover:text-primary hover:shadow-sm' }}">
+                    Dokumen
                 </a>
             </nav>
 
@@ -62,9 +62,9 @@
                 Tentang
             </a>
 
-            <a href="#"
-                class="flex items-center justify-between px-4 py-3 rounded-xl font-heading font-semibold text-sm text-foreground hover:bg-secondary hover:text-primary transition-all duration-300 {{ request()->routeIs('contact') ? 'bg-primary text-primary-foreground' : '' }}">
-                Kontak
+            <a href="{{ route('dokumen.index') }}"
+                class="flex items-center justify-between px-4 py-3 rounded-xl font-heading font-semibold text-sm text-foreground hover:bg-secondary hover:text-primary transition-all duration-300 {{ request()->routeIs('dokumen.index') ? 'bg-primary text-primary-foreground' : '' }}">
+                Dokumen
             </a>
 
         </nav>

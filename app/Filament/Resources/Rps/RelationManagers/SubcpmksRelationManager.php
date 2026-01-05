@@ -24,7 +24,9 @@ class SubcpmksRelationManager extends RelationManager
 {
     protected static string $relationship = 'subcpmks';
 
-    protected static ?string $title = 'Sub CPMK';
+    protected static ?string $title = 'Sub-CPMK';
+    protected static ?string $modelLabel = 'Sub-CPMK';
+    protected static ?string $pluralModelLabel = 'Sub-CPMK';
 
     public function form(Schema $schema): Schema
     {

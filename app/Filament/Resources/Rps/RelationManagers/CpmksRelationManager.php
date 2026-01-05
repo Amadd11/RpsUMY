@@ -54,7 +54,6 @@ class CpmksRelationManager extends RelationManager
                             $query->where('prodi_id', $user->prodi_id);
                         }
 
-                        // 🏛️ Admin Fakultas
                         if ($user->hasRole('Admin Fakultas')) {
                             $query->whereHas('prodi', function ($q) use ($user) {
                                 $q->where('fakultas_id', $user->fakultas_id);

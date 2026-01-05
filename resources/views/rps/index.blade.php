@@ -52,7 +52,7 @@
 
             <!-- 2. CPL Tab -->
             <div id="cpl" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-cpl :rps="$rps" :allCpls="$allCpls" :selectedCplIds="$selectedCplIds" :totalBobot="$totalBobot" />
+                <x-tab-cpl :rps="$rps" :allCpls="$allCpls" :selectedCplIds="$selectedCplIds" :totalBobotCpl="$totalBobotCpl" />
             </div>
 
             <!-- 3. CPMK Tab -->
@@ -67,17 +67,17 @@
 
             <!-- 5. Rencana Tab -->
             <div id="rencana" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-rencana :rps="$rps" />
+                <x-tab-rencana :rps="$rps" :totalBobotRencana="$totalBobotRencana" :rencanas="$rencanas" />
             </div>
 
             <!-- 6. Tugas Tab -->
             <div id="tugas" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-tugas :rps="$rps" />
+                <x-tab-tugas :rps="$rps" :daftarTugas="$daftarTugas" />
             </div>
 
             <!-- 7. Evaluasi Tab -->
             <div id="evaluasi" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-evaluasi :rps="$rps" :grouped-evaluasi="$groupedEvaluasi" />
+                <x-tab-evaluasi :rps="$rps" :grouped-evaluasi="$groupedEvaluasi" :totalBobotEvaluasi="$totalBobotEvaluasi" />
             </div>
 
             <!-- 8. Referensi Tab -->

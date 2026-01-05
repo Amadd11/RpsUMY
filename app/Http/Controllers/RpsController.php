@@ -38,12 +38,14 @@ class RpsController extends Controller
     /**
      * Menampilkan detail prodi dan daftar mata kuliahnya.
      */
-    public function showProdi(string $slug)
+    public function showProdi(string $slug, Request $request)
     {
-        $prodi = $this->rpsService->getProdiDetails($slug);
+        $data = $this->rpsService->getProdiDetailsPaginated($slug, $request);
 
-        return view('rps.details-prodi', compact('prodi'));
+        return view('rps.details-prodi', $data);
     }
+
+
 
     /**
      * Menampilkan detail RPS secara dinamis.
@@ -51,12 +53,8 @@ class RpsController extends Controller
      */
     public function showRps(string $slug)
     {
-        $data = $this->rpsService->getRpsDetails($slug);
 
-        // Jika data null (RPS tidak ditemukan), tampilkan 404
-        if (!$data) {
-            abort(404, 'Dokumen RPS belum tersedia untuk mata kuliah ini.');
-        }
+        $data = $this->rpsService->getRpsDetails($slug);
 
         return view('rps.index', $data);
     }

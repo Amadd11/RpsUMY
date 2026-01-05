@@ -1,7 +1,7 @@
 <div class="bg-card rounded-3xl p-6 md:p-8 shadow-xl border border-border/50 space-y-8">
     <!-- Header: Sub-CPMK -->
     <div class="flex items-center gap-3">
-        <div class="p-2 bg-gradient-to-br from-accent to-accent/80 rounded-xl shadow-md">
+        <div class="p-2 bg-linear-to-br from-accent to-accent/80 rounded-xl shadow-md">
             <iconify-icon icon="solar:branching-paths-bold" class="size-5 text-accent-foreground"></iconify-icon>
         </div>
         <h2 class="text-xl font-bold tracking-tight text-foreground">

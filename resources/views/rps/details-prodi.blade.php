@@ -32,51 +32,49 @@
         </div>
 
         <!-- Filters -->
-        <div class="bg-card rounded-2xl p-6 shadow-sm mb-6">
-            <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                <div class="flex-1">
-                    <label class="block text-sm font-semibold mb-2 text-foreground">Semester</label>
-                    <div class="relative">
-                        <select
-                            class="w-full px-4 py-3 rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300 appearance-none pr-10">
-                            <option>Semua Semester</option>
-                            <option>Semester 1</option>
-                            <option>Semester 2</option>
-                            <option>Semester 3</option>
-                            <option>Semester 4</option>
-                            <option>Semester 5</option>
-                            <option>Semester 6</option>
-                            <option>Semester 7</option>
-                            <option>Semester 8</option>
-                        </select>
-                        <iconify-icon icon="solar:alt-arrow-down-bold"
-                            class="size-5 absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></iconify-icon>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <label class="block text-sm font-semibold mb-2 text-foreground">Tahun Akademik</label>
-                    <div class="relative">
-                        <select
-                            class="w-full px-4 py-3 rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300 appearance-none pr-10">
-                            <option>2024/2025</option>
-                            <option>2023/2024</option>
-                            <option>2022/2023</option>
-                            <option>2021/2022</option>
-                        </select>
-                        <iconify-icon icon="solar:alt-arrow-down-bold"
-                            class="size-5 absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></iconify-icon>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <iconify-icon icon="solar:magnifying-glass-bold"
-                    class="size-5 text-muted-foreground absolute left-4 top-1/2 -translate-y-1/2"></iconify-icon>
-                <input type="text"
-                    class="w-full pl-12 pr-4 py-3 rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300"
-                    placeholder="Cari mata kuliah..." />
-            </div>
-        </div>
+        <form method="GET" action="{{ route('rps.prodi.show', $prodi->slug) }}">
+            <div class="bg-card rounded-2xl p-6 shadow-sm mb-6">
 
+                <!-- Filter Semester -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <div class="flex-1">
+                        <label class="block text-sm font-semibold mb-2 text-foreground">
+                            Semester
+                        </label>
+
+                        <div class="relative">
+                            <select name="semester" onchange="this.form.submit()"
+                                class="w-full px-4 py-3 rounded-xl bg-input border border-border">
+
+                                <option value="">Semua Semester</option>
+
+                                @for ($i = 1; $i <= 8; $i++)
+                                    <option value="{{ $i }}" @selected(request('semester') == $i)>
+                                        Semester {{ $i }}
+                                    </option>
+                                @endfor
+                            </select>
+
+                            <iconify-icon icon="solar:alt-arrow-down-bold"
+                                class="size-5 absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
+                            </iconify-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="relative">
+                    <iconify-icon icon="solar:magnifying-glass-bold"
+                        class="size-5 text-muted-foreground absolute left-4 top-1/2 -translate-y-1/2">
+                    </iconify-icon>
+
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari mata kuliah..."
+                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300">
+                </div>
+
+            </div>
+        </form>
+        
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Courses Table -->
@@ -99,7 +97,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($prodi->courses as $course)
+                                @forelse ($courses as $course)
                                     <tr class="border-b border-border hover:bg-muted/50 transition-colors">
                                         <td class="px-6 py-4 text-sm font-medium text-foreground">
                                             {{ $course->code }}
@@ -150,25 +148,60 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="flex items-center justify-between">
-                    <div class="text-sm text-muted-foreground">Menampilkan 8 dari 48 dokumen RPS</div>
-                    <div class="flex items-center gap-1">
-                        <button
-                            class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors p-2">
-                            <iconify-icon icon="solar:chevron-left-bold" class="size-5"></iconify-icon>
-                        </button>
-                        <button
-                            class="flex items-center justify-center size-10 rounded-lg bg-primary text-primary-foreground font-semibold px-3">1</button>
-                        <button
-                            class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors p-2">2</button>
-                        <button
-                            class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors p-2">3</button>
-                        <button
-                            class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors p-2">
-                            <iconify-icon icon="solar:chevron-right-bold" class="size-5"></iconify-icon>
-                        </button>
+                @if ($courses->hasPages())
+                    <div class="flex items-center justify-between mt-6">
+                        <!-- Info -->
+                        <div class="text-sm text-muted-foreground">
+                            Menampilkan {{ $courses->firstItem() }}–{{ $courses->lastItem() }}
+                            dari {{ $courses->total() }} dokumen RPS
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex items-center gap-1">
+
+                            {{-- PREVIOUS --}}
+                            @if ($courses->onFirstPage())
+                                <span
+                                    class="flex items-center justify-center size-10 rounded-lg border border-border bg-muted opacity-50 cursor-not-allowed">
+                                    <iconify-icon icon="solar:chevron-left-bold" class="size-5"></iconify-icon>
+                                </span>
+                            @else
+                                <a href="{{ $courses->previousPageUrl() }}"
+                                    class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors">
+                                    <iconify-icon icon="solar:chevron-left-bold" class="size-5"></iconify-icon>
+                                </a>
+                            @endif
+
+                            {{-- PAGE NUMBERS --}}
+                            @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+                                @if ($page == $courses->currentPage())
+                                    <span
+                                        class="flex items-center justify-center size-10 rounded-lg bg-primary text-primary-foreground font-semibold">
+                                        {{ $page }}
+                                    </span>
+                                @else
+                                    <a href="{{ $url }}"
+                                        class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors">
+                                        {{ $page }}
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            {{-- NEXT --}}
+                            @if ($courses->hasMorePages())
+                                <a href="{{ $courses->nextPageUrl() }}"
+                                    class="flex items-center justify-center size-10 rounded-lg border border-border bg-card hover:bg-muted transition-colors">
+                                    <iconify-icon icon="solar:chevron-right-bold" class="size-5"></iconify-icon>
+                                </a>
+                            @else
+                                <span
+                                    class="flex items-center justify-center size-10 rounded-lg border border-border bg-muted opacity-50 cursor-not-allowed">
+                                    <iconify-icon icon="solar:chevron-right-bold" class="size-5"></iconify-icon>
+                                </span>
+                            @endif
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
 
             <!-- Sidebar -->

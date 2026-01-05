@@ -2,11 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Models\Cpl;
 use App\Models\Rps;
-use App\Models\Fakultas;
 use App\Models\Prodi;
 use App\Models\Course;
-use App\Models\Cpl;
+use App\Models\Fakultas;
+use Illuminate\Http\Request;
 
 class RpsRepository
 {
@@ -34,6 +35,13 @@ class RpsRepository
         return Prodi::where('fakultas_id', $fakultasId)->with('fakultas')->get();
     }
 
+    public function findProdiBySlug(string $slug): Prodi
+    {
+        return Prodi::with('fakultas')
+            ->where('slug', $slug)
+            ->firstOrFail();
+    }
+
     /**
      * Mengambil detail prodi beserta daftar mata kuliahnya.
      */
@@ -47,13 +55,37 @@ class RpsRepository
             ->firstOrFail();
     }
 
+    public function getCoursesByProdi(int $prodiId, Request $request)
+    {
+        return Course::where('prodi_id', $prodiId)
+            ->when(
+                $request->semester,
+                fn($q) =>
+                $q->where('semester', $request->semester)
+            )
+            ->when(
+                $request->search,
+                fn($q) =>
+                $q->where(function ($qq) use ($request) {
+                    $qq->where('name', 'like', '%' . $request->search . '%')
+                        ->orWhere('code', 'like', '%' . $request->search . '%');
+                })
+            )
+            ->orderBy('semester')
+            ->orderBy('name')
+            ->paginate(10)
+            ->withQueryString();
+    }
+
+
     /**
      * Mencari mata kuliah berdasarkan slug.
      */
-    public function findCourseBySlug(string $slug)
+    public function findCourseBySlug(string $slug): Course
     {
-        return Course::whereSlug($slug)->firstOrFail();
+        return Course::with('prodi')->whereSlug($slug)->firstOrFail();
     }
+
 
     /**
      * Mengambil data RPS lengkap dengan semua relasi yang dibutuhkan view.
@@ -62,13 +94,10 @@ class RpsRepository
     {
         return Rps::with([
             'dosen',
-            'cpls' => function ($query) {
-                $query->withPivot('bobot')
-                    ->with('cpmk');
-            },
+            'cpls' => fn($q) => $q->withPivot('bobot')->with('cpmk'),
             'cpmks.subCpmks.rencanas',
-            'evaluasis.cpmk',
             'evaluasis.subCpmk',
+            'evaluasis.cpmk.cpl',
             'referensi',
             'tugas',
         ])
@@ -76,6 +105,7 @@ class RpsRepository
             ->latest()
             ->first();
     }
+
 
     /**
      * Mengambil semua CPL standar dari sebuah Program Studi.

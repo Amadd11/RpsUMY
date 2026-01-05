@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use App\Repositories\RpsRepository;
 
 class RpsService
@@ -31,6 +32,14 @@ class RpsService
         return $this->rpsRepository->findProdiWithCoursesBySlug($slug);
     }
 
+    public function getProdiDetailsPaginated(string $slug, Request $request)
+    {
+        $prodi   = $this->rpsRepository->findProdiBySlug($slug);
+        $courses = $this->rpsRepository->getCoursesByProdi($prodi->id, $request);
+
+        return compact('prodi', 'courses');
+    }
+
     /**
      * Menyiapkan data kompleks untuk halaman RPS.
      * Termasuk logika grouping data agar Controller tetap bersih.
@@ -40,19 +49,45 @@ class RpsService
         $course = $this->rpsRepository->findCourseBySlug($slug);
         $rps = $this->rpsRepository->getRpsWithRelations($course->id);
 
-        if (!$rps) {
-            return null;
-        }
+        $groupedCpmks = $rps->cpls->mapWithKeys(function ($cpl) {
+            return [
+                $cpl->id => [
+                    'cpl'   => $cpl,
+                    'cpmks' => $cpl->cpmk,
+                ],
+            ];
+        });
+
+        $rencanas = $rps?->rencanas
+            ->sortBy('week')
+            ->values() ?? collect();
+
+        $groupedEvaluasi = $rps?->evaluasis
+            ?->groupBy('cpmk_id')
+            ->map(function ($items) {
+                $cpmk = $items->first()->cpmk;
+                return [
+                    'cpl' => $cpmk?->cpl,
+                    'cpmk' => $cpmk,
+                    'items' => $items,
+                    'total_bobot_cpmk' => $items->sum('bobot_sub_cpmk'),
+                    'week_counts' => $items->countBy('week'),
+                ];
+            }) ?? collect();
 
         // Olah data: Grouping & Transformasi
         return [
             'course'          => $course,
             'rps'             => $rps,
+            'rencanas'       => $rencanas,
             'allCpls'         => $this->rpsRepository->getAllCplsByProdiId($course->prodi_id),
-            'selectedCplIds'  => $rps->cpls->pluck('id')->toArray(),
-            'totalBobot'      => $rps->cpls->sum('pivot.bobot'),
-            'groupedCpmks'    => $rps->cpmks->groupBy('cpl_id'),
-            'groupedEvaluasi' => $rps->evaluasis->groupBy('cpmk_id'),
+            'selectedCplIds'  => $rps?->cpls?->pluck('id')->toArray() ?? [],
+            'totalBobotCpl'      => $rps?->cpls?->sum('pivot.bobot') ?? 0,
+            'groupedCpmks'    => $groupedCpmks,
+            'daftarTugas'     => $rps?->tugas ?? collect(),
+            'groupedEvaluasi' => $groupedEvaluasi,
+            'totalBobotRencana' => $rps->rencanas->sum('bobot'),
+            'totalBobotEvaluasi' => $groupedEvaluasi->pluck('items')->flatten()->sum('bobot_sub_cpmk'),
         ];
     }
 }

@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Filament\Resources\Dosens\Schemas;
+namespace App\Filament\Resources\Dokumens\Schemas;
 
 use Filament\Schemas\Schema;
-use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\FileUpload;
 
-class DosenForm
+class DokumenForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->label('Nama Dosen')
-                    ->maxLength(255)
-                    ->required(),
                 Select::make('prodi_id')
-                    ->label('Prodi')
+                    ->label('Program Studi')
                     ->relationship(
                         name: 'prodi',
                         titleAttribute: 'name',
@@ -42,7 +37,19 @@ class DosenForm
                     ->default(fn() => auth()->user()->prodi_id)
                     ->disabled(fn() => auth()->user()->hasRole('Admin Prodi'))
                     ->dehydrated()
-                    ->required()
+                    ->required(),
+                TextInput::make('judul')
+                    ->label('Judul Dokumen')
+                    ->placeholder('Contoh: Panduan Akademik 2024')
+                    ->maxLength(255)
+                    ->required(),
+                FileUpload::make('file')
+                    ->label('File PDF')
+                    ->disk('public')
+                    ->directory('dokumen-prodi')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->maxSize(5120) // 5 MB
+                    ->required(),
             ]);
     }
 }

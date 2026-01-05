@@ -21,6 +21,7 @@ use App\Filament\Resources\Rps\RelationManagers\EvaluasisRelationManager;
 use App\Filament\Resources\Rps\RelationManagers\ReferensiRelationManager;
 use App\Filament\Resources\Rps\RelationManagers\RencanaRelationManager;
 use App\Filament\Resources\Rps\RelationManagers\SubcpmksRelationManager;
+use App\Filament\Resources\Rps\RelationManagers\TugasRelationManager;
 
 class RpsResource extends Resource
 {
@@ -78,6 +79,7 @@ class RpsResource extends Resource
             CpmksRelationManager::class,
             SubcpmksRelationManager::class,
             RencanaRelationManager::class,
+            TugasRelationManager::class,
             EvaluasisRelationManager::class,
             ReferensiRelationManager::class,
         ];

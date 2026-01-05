@@ -4,20 +4,23 @@ namespace App\Filament\Resources\Rps\Schemas;
 
 use App\Models\Rps;
 use App\Models\Course;
-use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
+use App\Models\Dokumen;
 use Illuminate\Support\Str;
+use Filament\Actions\Action;
 use Filament\Schemas\Schema;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\View;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Schemas\Components\Utilities\Set; // Ubah import Set ke Schemas namespace
-use Illuminate\Validation\Rule;
 
 class RpsForm
 {
@@ -136,6 +139,23 @@ class RpsForm
                 ->openable()
                 ->downloadable()
                 ->columnSpanFull(),
+            // Action::make('lihat_matriks')
+            //     ->label('Lihat Matriks Kurikulum')
+            //     ->icon('heroicon-o-document-text')
+            //     ->modalWidth('7xl')
+            //     ->modalSubmitAction(false) // Biasanya hanya view, jadi tidak butuh tombol save
+            //     ->modalContent(function ($record) {
+            //         // Memanggil service secara otomatis
+            //         $service = app(\App\Services\DokumenService::class);
+
+            //         // Ambil data menggunakan logika yang sama dengan controller
+            //         $dokumen = $service->getSingleMatriksByProdiId($record->course->prodi_id);
+
+            //         return view('dokumen.index', [
+            //             'dokumen' => $dokumen, // Variabel tunggal untuk modal
+            //             'prodi'   => $record->course->prodi
+            //         ]);
+            //     }),
             Section::make('Capaian Pembelajaran Lulusan (CPL)')
                 ->description('Pilih CPL yang dibebankan pada mata kuliah ini.')
                 ->schema([

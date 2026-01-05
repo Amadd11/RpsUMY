@@ -17,7 +17,7 @@
 
             <!-- Grid Pattern -->
             <div
-                class="absolute inset-0 bg-[url('https://play.tailwindcss.com/img/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20">
+                class="absolute inset-0 bg-[url('https://play.tailwindcss.com/img/grid.svg')] bg-center mask-[linear-linear(180deg,white,rgba(255,255,255,0))] opacity-20">
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                 <div class="text-left space-y-8 animate-fade-in-up">
                     <div>
                         <span
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent text-sm font-bold tracking-wide mb-6 backdrop-blur-md">
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent text-sm font-bold tracking-wide mb-6">
                             <span class="relative flex h-2 w-2">
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -39,7 +39,7 @@
                         <h1 class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight mb-6">
                             Transformasi <br>
                             <span
-                                class="bg-gradient-to-r from-primary via-accent to-chart-3 bg-clip-text text-transparent animate-gradient">Pembelajaran</span>
+                                class="bg-linear-to-r from-primary via-accent to-chart-3 bg-clip-text text-transparent animate-linear">Pembelajaran</span>
                         </h1>
                         <p class="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed">
                             Platform cerdas untuk manajemen <span class="text-white font-medium">Rencana Pembelajaran
@@ -61,8 +61,14 @@
                         </button>
 
                         <button
-                            class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-3">
-                            Tentang Website
+                            class="group relative px-8 py-4 bg-accent text-primary-foreground rounded-2xl font-bold shadow-2xl shadow-primary/30 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            </div>
+
+                            <span class="relative flex items-center justify-center gap-3">
+                                Tentang Website
+                            </span>
                         </button>
                     </div>
 
@@ -83,7 +89,7 @@
                 <!-- Right Content: Decorative Elements/Cards -->
                 <div class="relative hidden lg:block animate-float">
                     <div
-                        class="relative z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 shadow-3xl">
+                        class="relative z-10 bg-linear-to-br from-white/10 to-white/5 border border-white/20 rounded-[2.5rem] p-8 shadow-3xl">
                         <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop"
                             alt="Dashboard Preview" class="rounded-2xl shadow-2xl mb-6 opacity-80 border border-white/10">
 
@@ -114,14 +120,35 @@
 
             <!-- Scroll Indicator -->
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-                <div class="w-px h-12 bg-gradient-to-b from-white to-transparent"></div>
+                <div class="w-px h-12 bg-linear-to-b from-white to-transparent"></div>
             </div>
+    </section>
+
+    <section class="px-4 py-12 max-w-7xl mx-auto">
+        <div class="bg-card rounded-2xl p-6 shadow-sm">
+            <h2 class="text-2xl font-bold mb-4 font-heading">Apa itu RPS?</h2>
+            <p class="text-muted-foreground mb-4">
+                Rencana Pembelajaran Semester (RPS) adalah dokumen program pembelajaran yang dirancang
+                untuk mengorganisasikan proses pembelajaran dalam satu semester. RPS memuat identitas
+                mata kuliah, capaian pembelajaran, bahan kajian, metode pembelajaran, dan kriteria
+                penilaian.
+            </p>
+            <p class="text-muted-foreground mb-4">
+                Melalui sistem digital ini, mahasiswa, dosen, dan stakeholder dapat mengakses RPS dengan
+                mudah untuk memahami struktur dan target pembelajaran setiap mata kuliah di Universitas
+                Muhammadiyah Yogyakarta.
+            </p>
+            <div class="flex items-center gap-2 text-primary font-semibold">
+                <span>Pelajari lebih lanjut</span>
+                <iconify-icon icon="solar:arrow-right-linear" class="size-5"></iconify-icon>
+            </div>
+        </div>
     </section>
 
     <section class="px-4 py-20 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2
-                class="text-3xl md:text-5xl pb-2 font-extrabold mb-4 font-heading bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                class="text-3xl md:text-5xl pb-2 font-extrabold mb-4 font-heading bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
                 Fitur Unggulan Sistem RPS
             </h2>
             <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -191,7 +218,7 @@
 
     {{-- SECTION: JELAJAHI FAKULTAS --}}
     <section class="bg-secondary/50 px-4 py-24 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+        <div class="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/20 to-transparent"></div>
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-black mb-4 font-heading text-secondary-foreground tracking-tight">
@@ -235,51 +262,6 @@
                         </div>
                     </a>
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-    <section class="px-4 py-12 max-w-7xl mx-auto">
-        <div class="bg-card rounded-2xl p-6 shadow-sm">
-            <h2 class="text-2xl font-bold mb-4 font-heading">Apa itu RPS?</h2>
-            <p class="text-muted-foreground mb-4">
-                Rencana Pembelajaran Semester (RPS) adalah dokumen program pembelajaran yang dirancang
-                untuk mengorganisasikan proses pembelajaran dalam satu semester. RPS memuat identitas
-                mata kuliah, capaian pembelajaran, bahan kajian, metode pembelajaran, dan kriteria
-                penilaian.
-            </p>
-            <p class="text-muted-foreground mb-4">
-                Melalui sistem digital ini, mahasiswa, dosen, dan stakeholder dapat mengakses RPS dengan
-                mudah untuk memahami struktur dan target pembelajaran setiap mata kuliah di Universitas
-                Muhammadiyah Yogyakarta.
-            </p>
-            <div class="flex items-center gap-2 text-primary font-semibold">
-                <span>Pelajari lebih lanjut</span>
-                <iconify-icon icon="solar:arrow-right-linear" class="size-5"></iconify-icon>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-primary text-primary-foreground px-4 py-12">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-8 font-heading">Universitas dalam Angka</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="text-center">
-                    <div class="text-4xl font-bold mb-2">42+</div>
-                    <div class="text-sm opacity-90">Program Studi</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold mb-2">25.000+</div>
-                    <div class="text-sm opacity-90">Mahasiswa Aktif</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold mb-2">800+</div>
-                    <div class="text-sm opacity-90">Dosen Berkualitas</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold mb-2">A</div>
-                    <div class="text-sm opacity-90">Akreditasi Institusi</div>
-                </div>
             </div>
         </div>
     </section>
@@ -332,7 +314,7 @@
         animation: float 6s ease-in-out infinite;
     }
 
-    @keyframes gradient {
+    @keyframes linear {
         0% {
             background-position: 0% 50%;
         }
@@ -346,9 +328,9 @@
         }
     }
 
-    .animate-gradient {
+    .animate-linear {
         background-size: 200% 200%;
-        animation: gradient 8s linear infinite;
+        animation: linear 8s linear infinite;
     }
 
     .animate-bounce-slow {
