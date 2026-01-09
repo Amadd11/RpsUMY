@@ -39,9 +39,9 @@
                     <div class="relative z-10 text-center">
                         <!-- Icon Prodi (placeholder, bisa diganti logo prodi nanti) -->
                         <div class="mb-6 flex justify-center">
-                            <div
-                                class="w-24 h-24 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                                <iconify-icon icon="solar:book-bold-duotone" class="size-12 text-primary"></iconify-icon>
+                            <div class="mb-6 mx-auto w-28 h-28 flex items-center justify-center">
+                                <img src="{{ Storage::url($prodi->logo) }}" alt="{{ $prodi->name }} Logo"
+                                    class="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500 shadow-md">
                             </div>
                         </div>
 

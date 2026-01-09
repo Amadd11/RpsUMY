@@ -28,11 +28,11 @@
                         <div class="flex items-center gap-2 bg-primary-foreground/10 px-3 py-1 rounded-lg">
                             <iconify-icon icon="solar:calendar-bold"
                                 class="size-4 text-primary-foreground/80"></iconify-icon>
-                            <span>TA: {{ $rps->tahun_ajaran }}</span>
+                            <span>TA: {{ $rps->tahun_ajaran ?? '-' }}</span>
                         </div>
                         <div class="flex items-center gap-2 bg-primary-foreground/10 px-3 py-1 rounded-lg">
                             <iconify-icon icon="solar:clock-bold" class="size-4 text-primary-foreground/80"></iconify-icon>
-                            <span>{{ \Carbon\Carbon::parse($rps->tgl_penyusunan)->format('d M Y') }}</span>
+                            {{ $rps ? \Carbon\Carbon::parse($rps->tgl_penyusunan)->format('d M Y') : 'Belum Disusun' }}
                         </div>
                     </div>
                 </div>
@@ -40,51 +40,65 @@
         </div>
 
         <!-- Tabs Navigation Component -->
-        <x-tabs-navigation />
+        @if ($rps)
+            <!-- Tampilkan Navigasi Tabs hanya jika RPS ada -->
+            <x-tabs-navigation />
 
-        <!-- Tab Content Container -->
-        <div class="mt-6 min-h-[400px]">
+            <!-- Tab Content Container -->
+            <div class="mt-6 min-h-[400px]">
+                <div id="deskripsi" class="tab-content transition-opacity duration-300">
+                    <x-tab-deskripsi :rps="$rps" />
+                </div>
 
-            <!-- 1. Deskripsi Tab -->
-            <div id="deskripsi" class="tab-content transition-opacity duration-300">
-                <x-tab-deskripsi :rps="$rps" />
+                <div id="cpl" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-cpl :rps="$rps" :allCpls="$allCpls" :selectedCplIds="$selectedCplIds" :totalBobotCpl="$totalBobotCpl" />
+                </div>
+
+                <div id="cpmk" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-cpmk :rps="$rps" :groupedCpmks="$groupedCpmks" :course="$course" />
+                </div>
+
+                <div id="subcpmk" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-subcpmk :rps="$rps" />
+                </div>
+
+                <div id="rencana" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-rencana :rps="$rps" :totalBobotRencana="$totalBobotRencana" :rencanas="$rencanas" />
+                </div>
+
+                <div id="tugas" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-tugas :rps="$rps" :daftarTugas="$daftarTugas" />
+                </div>
+
+                <div id="evaluasi" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-evaluasi :rps="$rps" :grouped-evaluasi="$groupedEvaluasi" :totalBobotEvaluasi="$totalBobotEvaluasi" />
+                </div>
+
+                <div id="referensi" class="tab-content hidden transition-opacity duration-300">
+                    <x-tab-referensi :rps="$rps" :referensi="$referensi" />
+                </div>
             </div>
-
-            <!-- 2. CPL Tab -->
-            <div id="cpl" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-cpl :rps="$rps" :allCpls="$allCpls" :selectedCplIds="$selectedCplIds" :totalBobotCpl="$totalBobotCpl" />
+        @else
+            <!-- Tampilan Empty State jika RPS belum ada -->
+            <div
+                class="flex flex-col items-center justify-center p-20 bg-slate-50 border-2 border-dashed border-slate-200 rounded-[3rem] text-center">
+                <div
+                    class="size-24 bg-white rounded-full flex items-center justify-center shadow-xl border border-slate-100 mb-8">
+                    <iconify-icon icon="solar:document-add-bold-duotone" class="size-12 text-slate-300"></iconify-icon>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 font-heading mb-3 uppercase tracking-tighter">Dokumen Belum
+                    Tersedia</h3>
+                <p class="text-slate-500 max-w-sm leading-relaxed font-medium italic">
+                    Rencana Pembelajaran Semester untuk mata kuliah ini sedang dalam tahap penyusunan oleh tim pengampu.
+                </p>
+                <div class="mt-8">
+                    <a href="{{ route('rps.prodi.show', $course->prodi->slug) }}"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-2xl font-bold text-sm text-slate-600 hover:bg-slate-50 transition-all">
+                        <iconify-icon icon="solar:alt-arrow-left-bold"></iconify-icon>
+                        Kembali ke Daftar Matakuliah
+                    </a>
+                </div>
             </div>
-
-            <!-- 3. CPMK Tab -->
-            <div id="cpmk" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-cpmk :rps="$rps" :groupedCpmks="$groupedCpmks" :course="$course" />
-            </div>
-
-            <!-- 4. SubCpmk Tab -->
-            <div id="subcpmk" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-subcpmk :rps="$rps" />
-            </div>
-
-            <!-- 5. Rencana Tab -->
-            <div id="rencana" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-rencana :rps="$rps" :totalBobotRencana="$totalBobotRencana" :rencanas="$rencanas" />
-            </div>
-
-            <!-- 6. Tugas Tab -->
-            <div id="tugas" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-tugas :rps="$rps" :daftarTugas="$daftarTugas" />
-            </div>
-
-            <!-- 7. Evaluasi Tab -->
-            <div id="evaluasi" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-evaluasi :rps="$rps" :grouped-evaluasi="$groupedEvaluasi" :totalBobotEvaluasi="$totalBobotEvaluasi" />
-            </div>
-
-            <!-- 8. Referensi Tab -->
-            <div id="referensi" class="tab-content hidden transition-opacity duration-300">
-                <x-tab-referensi :rps="$rps" />
-            </div>
-
-        </div>
+        @endif
     </div>
 @endsection

@@ -42,17 +42,22 @@ class SubcpmksRelationManager extends RelationManager
                 ->options(
                     fn() =>
                     $this->ownerRecord
-                        ->cpmks()
-                        ->pluck('code', 'id')
+                        ?->cpmks()
+                        ->select('cpmks.id', 'cpmks.code')
+                        ->pluck('cpmks.code', 'cpmks.id')
+                        ->toArray()
                 )
                 ->searchable()
                 ->preload()
                 ->live()
                 ->afterStateUpdated(function ($state, Set $set) {
                     $cpmk = Cpmk::find($state);
+
                     $set(
                         'cpmk_description_preview',
-                        $cpmk ? strip_tags($cpmk->description) : '-'
+                        $cpmk
+                            ? strip_tags($cpmk->description)
+                            : '-'
                     );
                 }),
 
@@ -61,6 +66,10 @@ class SubcpmksRelationManager extends RelationManager
                 ->disabled()
                 ->dehydrated(false)
                 ->rows(3)
+                ->formatStateUsing(
+                    fn($state, $record) =>
+                    strip_tags($state ?: ($record?->cpmk?->description ?? ''))
+                )
                 ->columnSpanFull(),
 
             RichEditor::make('description')

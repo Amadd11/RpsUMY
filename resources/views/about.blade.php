@@ -58,8 +58,9 @@
                         <div
                             class="relative bg-white border border-slate-200 rounded-[3rem] p-10 shadow-2xl overflow-hidden transition-transform duration-500 group-hover:-translate-y-2">
                             <div class="absolute -right-8 -bottom-8 size-40 bg-accent/5 rounded-full blur-3xl"></div>
-                            <iconify-icon icon="solar:book-bookmark-bold-duotone"
-                                class="size-16 text-primary mb-6"></iconify-icon>
+                            <iconify-icon icon="solar:book-bookmark-bold-duotone" class="text-primary mb-6" width="72"
+                                height="72">
+                            </iconify-icon>
                             <h3 class="text-2xl font-black text-slate-900 mb-4 font-heading">Memahami RPS</h3>
                             <div class="space-y-4 text-slate-600">
                                 <p class="text-sm leading-relaxed">
@@ -135,54 +136,97 @@
                     </p>
                 </div>
 
-                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <!-- Connecting Line (Desktop) -->
+                <div class="relative grid grid-cols-1 md:grid-cols-4 gap-12"> <!-- Connecting Line (Desktop) -->
                     <div
-                        class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-slate-200 z-0">
+                        class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-slate-200 z-0">
                     </div>
-
                     <!-- Step 1 -->
                     <div class="relative z-10 flex flex-col items-center text-center group">
-                        <div
-                            class="size-20 bg-white border-4 border-slate-50 shadow-xl rounded-3xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:border-primary/20 transition-all duration-500">
-                            <iconify-icon icon="solar:minimalistic-magnifer-bold"
-                                class="size-8 text-primary group-hover:text-white transition-colors"></iconify-icon>
+                        <div class="relative mb-8">
+                            <!-- Lingkaran Putih dengan Iconify (bisa diwarnai primary) -->
+                            <div
+                                class="size-20 md:size-24 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105 group-hover:border-primary/20">
+                                <iconify-icon icon="solar:book-2-bold-duotone"
+                                    class="text-4xl md:text-5xl text-blue-900 transition-transform duration-300 group-hover:scale-110">
+                                </iconify-icon>
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 size-9 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold shadow-md">
+                                1
+                            </div>
                         </div>
-                        <div
-                            class="size-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-black mb-4 ring-8 ring-white">
-                            1</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 font-heading">Eksplorasi Prodi</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed px-4">Pilih Fakultas dan Program Studi Anda melalui
-                            katalog digital yang intuitif.</p>
+                        <h3
+                            class="text-xl font-bold text-foreground mb-3 font-heading group-hover:text-primary transition-colors duration-300">
+                            Pilih Menu RPS
+                        </h3>
+
+                        <!-- Deskripsi -->
+                        <p class="text-sm text-muted-foreground leading-relaxed px-6 max-w-xs">
+                            Akses menu RPS untuk mulai mencari fakultas dan program studi yang diinginkan.
+                        </p>
                     </div>
 
                     <!-- Step 2 -->
                     <div class="relative z-10 flex flex-col items-center text-center group">
-                        <div
-                            class="size-20 bg-white border-4 border-slate-50 shadow-xl rounded-3xl flex items-center justify-center mb-8 group-hover:bg-accent group-hover:border-accent/20 transition-all duration-500">
-                            <iconify-icon icon="solar:filter-bold"
-                                class="size-8 text-accent group-hover:text-slate-900 transition-colors"></iconify-icon>
+                        <div class="relative mb-8">
+                            <div
+                                class="size-20 md:size-24 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105 group-hover:border-primary/20">
+                                <img src="{{ asset('assets/images/icons/magnifying-glass.png') }}" alt="Pilih Mata Kuliah"
+                                    class="w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-110">
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 size-9 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold shadow-md">
+                                2
+                            </div>
                         </div>
-                        <div
-                            class="size-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-black mb-4 ring-8 ring-white">
-                            2</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 font-heading">Pilih Mata Kuliah</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed px-4">Dapatkan rincian dokumen yang
-                            spesifik dan akurat.</p>
+                        <h3
+                            class="text-xl font-bold text-foreground mb-3 font-heading group-hover:text-primary transition-colors duration-300">
+                            Eksplorasi Prodi</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed px-4">Pilih Fakultas dan Program Studi Anda melalui
+                            katalog digital yang intuitif.</p>
                     </div>
 
                     <!-- Step 3 -->
                     <div class="relative z-10 flex flex-col items-center text-center group">
-                        <div
-                            class="size-20 bg-white border-4 border-slate-50 shadow-xl rounded-3xl flex items-center justify-center mb-8 group-hover:bg-chart-3 group-hover:border-chart-3/20 transition-all duration-500">
-                            <iconify-icon icon="solar:file-download-bold"
-                                class="size-8 text-chart-3 group-hover:text-white transition-colors"></iconify-icon>
+                        <div class="relative mb-8">
+                            <div
+                                class="size-20 md:size-24 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105 group-hover:border-primary/20">
+                                <img src="{{ asset('assets/images/icons/filter.png') }}" alt="Pilih Mata Kuliah"
+                                    class="w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-110">
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 size-9 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold shadow-md">
+                                3
+                            </div>
                         </div>
-                        <div
-                            class="size-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-black mb-4 ring-8 ring-white">
-                            3</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 font-heading">Akses & Unduh</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed px-4">Lihat visualisasi CPL atau unduh RPS dalam
+                        <h3
+                            class="text-xl font-bold text-foreground mb-3 font-heading group-hover:text-primary transition-colors duration-300">
+                            Pilih Mata Kuliah
+                        </h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed px-6 max-w-xs">
+                            Dapatkan rincian dokumen yang spesifik dan akurat.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative z-10 flex flex-col items-center text-center group">
+                        <div class="relative mb-8">
+                            <div
+                                class="size-20 md:size-24 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105 group-hover:border-primary/20">
+                                <iconify-icon icon="solar:file-download-bold"
+                                    class="text-4xl md:text-5xl text-primary transition-transform duration-300 group-hover:scale-110">
+                                </iconify-icon>
+                            </div>
+                            <div
+                                class="absolute -top-2 -right-2 size-9 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold shadow-md">
+                                4
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-foreground mb-3 font-heading group-hover:text-primary transition-colors duration-300">
+                            Akses & Unduh</h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed px-6 max-w-xs">Lihat visualisasi CPL atau
+                            unduh RPS dalam
                             format PDF standar akademik.</p>
                     </div>
                 </div>

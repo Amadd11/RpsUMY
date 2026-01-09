@@ -49,14 +49,15 @@ class RpsService
         $course = $this->rpsRepository->findCourseBySlug($slug);
         $rps = $this->rpsRepository->getRpsWithRelations($course->id);
 
-        $groupedCpmks = $rps->cpls->mapWithKeys(function ($cpl) {
-            return [
-                $cpl->id => [
-                    'cpl'   => $cpl,
-                    'cpmks' => $cpl->cpmk,
-                ],
-            ];
-        });
+        $groupedCpmks = $rps?->cpls
+            ?->mapWithKeys(function ($cpl) {
+                return [
+                    $cpl->id => [
+                        'cpl'   => $cpl,
+                        'cpmks' => $cpl->cpmk,
+                    ],
+                ];
+            }) ?? collect();
 
         $rencanas = $rps?->rencanas
             ->sortBy('week')
@@ -86,8 +87,9 @@ class RpsService
             'groupedCpmks'    => $groupedCpmks,
             'daftarTugas'     => $rps?->tugas ?? collect(),
             'groupedEvaluasi' => $groupedEvaluasi,
-            'totalBobotRencana' => $rps->rencanas->sum('bobot'),
+            'totalBobotRencana' => $rps?->rencanas->sum('bobot'),
             'totalBobotEvaluasi' => $groupedEvaluasi->pluck('items')->flatten()->sum('bobot_sub_cpmk'),
+            'referensi'      => $rps?->referensi ?? collect(),
         ];
     }
 }

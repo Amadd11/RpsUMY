@@ -17,7 +17,7 @@
                         <div
                             class="absolute -inset-2 bg-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500">
                         </div>
-                        <img alt="UMY Logo" src="{{ asset('assets/logo.png') }}"
+                        <img alt="UMY Logo" src="{{ asset('assets/images/logo/logo.png') }}"
                             class="relative h-16 w-16 object-contain drop-shadow-xl"
                             onerror="this.src='https://ggrhecslgdflloszjkwl.supabase.co/storage/v1/object/public/generation-assets/placeholder/square.png'" />
                     </div>
@@ -53,28 +53,28 @@
                         <a href="/"
                             class="group flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-all duration-300">
                             <span class="w-0 group-hover:w-4 h-0.5 bg-primary transition-all duration-300"></span>
-                            Beranda Utama
+                            Beranda
                         </a>
                     </li>
                     <li>
-                        <a href="/kurikulum"
+                        <a href="{{ route('rps.fakultas') }}"
                             class="group flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-all duration-300">
                             <span class="w-0 group-hover:w-4 h-0.5 bg-primary transition-all duration-300"></span>
-                            Peta Kurikulum
+                            RPS
                         </a>
                     </li>
                     <li>
-                        <a href="/rps"
+                        <a href="{{ route('about') }}"
                             class="group flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-all duration-300">
                             <span class="w-0 group-hover:w-4 h-0.5 bg-primary transition-all duration-300"></span>
-                            Katalog RPS Digital
+                            Tentang Website
                         </a>
                     </li>
                     <li>
-                        <a href="/referensi"
+                        <a href="{{ route('dokumen.index') }}"
                             class="group flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-all duration-300">
                             <span class="w-0 group-hover:w-4 h-0.5 bg-primary transition-all duration-300"></span>
-                            Pusat Referensi
+                            Dokumen
                         </a>
                     </li>
                 </ul>
@@ -156,24 +156,9 @@
         <div class="pt-10 border-t border-slate-100/60 flex flex-col md:flex-row justify-between items-center gap-6">
             <div
                 class="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.25em]">
-                <span>© {{ date('Y') }} My_RPS Digital System</span>
+                <span>© {{ date('Y') }} My RPS Digital System</span>
                 <span class="hidden md:block size-1 bg-slate-200 rounded-full"></span>
-                <span>LPP Universitas Muhammadiyah Yogyakarta</span>
-            </div>
-
-            <div class="flex items-center gap-8">
-                <a href="#"
-                    class="text-[10px] font-black text-slate-400 hover:text-primary transition-all uppercase tracking-widest">Privacy
-                    Policy</a>
-                <a href="#"
-                    class="text-[10px] font-black text-slate-400 hover:text-primary transition-all uppercase tracking-widest">Terms
-                    of Service</a>
-                <a href="#"
-                    class="group flex items-center gap-2 text-[10px] font-black text-primary uppercase tracking-widest">
-                    Support Center
-                    <iconify-icon icon="solar:arrow-right-up-linear"
-                        class="size-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
-                </a>
+                <span>Universitas Muhammadiyah Yogyakarta</span>
             </div>
         </div>
     </div>

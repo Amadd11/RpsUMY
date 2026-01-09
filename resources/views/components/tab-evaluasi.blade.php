@@ -1,8 +1,8 @@
 <div class="bg-card rounded-3xl p-6 md:p-8 shadow-xl border border-border/50 space-y-8 font-sans">
     <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-            <div class="p-2 bg-linear-to-br from-indigo-600 to-indigo-700 rounded-xl shadow-md">
-                <iconify-icon icon="solar:book-open-bold" class="size-5 text-white"></iconify-icon>
+            <div class="p-2 bg-linear-to-br from-primary to-primary/80 rounded-xl shadow-md">
+                <iconify-icon icon="solar:book-open-bold" class="size-5 text-primary-foreground"></iconify-icon>
             </div>
             <div>
                 <h2 class="text-2xl font-bold tracking-tight text-foreground font-heading">
@@ -16,8 +16,7 @@
         <div class="overflow-x-auto no-scrollbar">
             <table class="w-full text-sm text-left border-collapse">
                 <thead>
-                    <tr
-                        class="bg-linear-to-r from-indigo-50 to-purple-50 text-indigo-900 border-b-2 border-indigo-200">
+                    <tr class="bg-linear-to-r from-indigo-50 to-purple-50 text-indigo-900 border-b-2 border-indigo-200">
                         <th
                             class="p-5 text-xs font-bold uppercase tracking-wider text-center w-20 border-r border-indigo-200/30">
                             Minggu

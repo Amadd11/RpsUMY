@@ -11,7 +11,7 @@ class FrontController extends Controller
     //
     public function index()
     {
-        $fakultas = Fakultas::withCount('prodi')->get();
+        $fakultas = Fakultas::withCount('prodi')->paginate(3);
 
         return view('index', compact('fakultas'));
     }

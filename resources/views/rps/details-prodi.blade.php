@@ -7,7 +7,7 @@
 
             <iconify-icon icon="solar:arrow-right-linear" class="size-4"></iconify-icon>
 
-            <a href="{{ route('rps.fakultas') }}" class="hover:text-primary font-medium">
+            <a href="{{ route('rps.prodi', $prodi->fakultas->slug) }}" class="hover:text-primary font-medium">
                 {{ $prodi->fakultas->name }}
             </a>
 
@@ -44,8 +44,7 @@
 
                         <div class="relative">
                             <select name="semester" onchange="this.form.submit()"
-                                class="w-full px-4 py-3 rounded-xl bg-input border border-border">
-
+                                class="w-full px-4 py-3 rounded-xl bg-input border border-border appearance-none">
                                 <option value="">Semua Semester</option>
 
                                 @for ($i = 1; $i <= 8; $i++)
@@ -74,7 +73,7 @@
 
             </div>
         </form>
-        
+
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Courses Table -->
@@ -118,11 +117,16 @@
                                         <td class="px-6 py-4">
                                             <div class="flex items-center justify-center gap-2">
                                                 <!-- VIEW RPS -->
-                                                <a href="{{ route('rps.course.show', $course->slug) }}"
-                                                    class="flex items-center justify-center size-9 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors p-2">
-                                                    <iconify-icon icon="solar:eye-bold"
-                                                        class="size-5 text-primary"></iconify-icon>
-                                                </a>
+                                                @if ($course->rps)
+                                                    <a href="{{ route('rps.course.show', $course->slug) }}" class="...">
+                                                        <iconify-icon icon="solar:eye-bold" />
+                                                    </a>
+                                                @else
+                                                    <span
+                                                        class="flex items-center justify-center size-9 bg-muted rounded-lg opacity-50 cursor-not-allowed">
+                                                        <iconify-icon icon="solar:eye-off-bold" />
+                                                    </span>
+                                                @endif
 
                                                 <!-- DOWNLOAD (optional nanti) -->
                                                 @if ($course->rps_file ?? false)
@@ -228,52 +232,6 @@
                             <iconify-icon icon="solar:check-circle-bold"
                                 class="size-5 text-primary shrink-0 mt-0.5"></iconify-icon>
                             <div class="text-sm text-foreground">8 Semester</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Learning Outcomes -->
-                <div class="bg-card rounded-2xl p-6 shadow-sm">
-                    <h2 class="text-xl font-bold mb-4 font-heading text-foreground">Capaian Pembelajaran</h2>
-                    <ul class="space-y-3 text-sm text-muted-foreground">
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold shrink-0 mt-1">•</span>
-                            <span>Mampu merancang dan mengembangkan sistem perangkat lunak</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold shrink-0 mt-1">•</span>
-                            <span>Menguasai konsep teoretis bidang pengetahuan informatika</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold shrink-0 mt-1">•</span>
-                            <span>Mampu menganalisis dan menyelesaikan permasalahan teknologi informasi</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold shrink-0 mt-1">•</span>
-                            <span>Memiliki kemampuan komunikasi dan kerja sama tim yang baik</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Coordinator -->
-                <div class="bg-card rounded-2xl p-6 shadow-sm">
-                    <h2 class="text-xl font-bold mb-4 font-heading text-foreground">Koordinator Program Studi</h2>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img alt="Coordinator" src="https://randomuser.me/api/portraits/men/32.jpg"
-                            class="size-16 rounded-full object-cover" />
-                        <div>
-                            <div class="font-semibold text-foreground">Dr. Ahmad Hidayat, M.Kom</div>
-                            <div class="text-sm text-muted-foreground">Ketua Program Studi</div>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <iconify-icon icon="solar:letter-bold" class="size-5 text-primary"></iconify-icon>
-                            <div class="text-sm text-muted-foreground">ahmad.hidayat@umy.ac.id</div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <iconify-icon icon="solar:phone-bold" class="size-5 text-primary"></iconify-icon>
-                            <div class="text-sm text-muted-foreground">+62 274 387656 ext. 234</div>
                         </div>
                     </div>
                 </div>

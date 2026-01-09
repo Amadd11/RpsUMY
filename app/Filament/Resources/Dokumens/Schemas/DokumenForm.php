@@ -48,7 +48,7 @@ class DokumenForm
                     ->disk('public')
                     ->directory('dokumen-prodi')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(5120) // 5 MB
+                    ->maxSize() 
                     ->required(),
             ]);
     }

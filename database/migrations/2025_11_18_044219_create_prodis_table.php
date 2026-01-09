@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('fakultas_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug');
+            $table->text('deskripsi')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

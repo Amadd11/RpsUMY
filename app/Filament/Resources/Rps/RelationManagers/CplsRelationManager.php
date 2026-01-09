@@ -80,11 +80,9 @@ class CplsRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make(),
-                AttachAction::make(),
             ])
             ->recordActions([
                 EditAction::make(),
-                DetachAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

@@ -14,41 +14,63 @@
             </p>
         </div>
 
-        <!-- Search Bar -->
-        <div class="mb-8">
-            <div class="relative">
-                <iconify-icon icon="solar:magnifying-glass-bold"
-                    class="size-5 text-muted-foreground absolute left-4 top-1/2 -translate-y-1/2"></iconify-icon>
-                <input type="text"
-                    class="w-full pl-12 pr-4 py-4 rounded-2xl bg-card shadow-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300"
-                    placeholder="Cari fakultas atau program studi..." />
-            </div>
-        </div>
-
         <!-- Faculties Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <!-- Fakultas Ekonomi & Bisnis -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($fakultas as $item)
                 <a href="{{ route('rps.prodi', $item->slug) }}"
-                    class="group bg-card rounded-2xl p-6 text-left shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border overflow-hidden">
-                    <div class="mb-4 mx-auto w-32 h-32 flex items-center justify-center">
-                        <img src="{{ Storage::url($item->logo) }}" alt="{{ $item->name }} Logo"
-                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl">
+                    class="group relative bg-card/80 border border-border/50 rounded-3xl p-6 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center block">
+
+                    <!-- Gradient Overlay Background -->
+                    <div
+                        class="absolute inset-0 bg-linear-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <div class="flex-1 min-w-0 mt-4">
-                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">{{ $item->name }}
-                        </h3>
-                        <p class="text-sm text-muted-foreground mb-4 leading-relaxed">
-                            {!! $item->deskripsi !!}
-                        </p>
-                        <div class="flex items-center gap-2 mt-3 text-sm text-primary font-semibold">
-                            <span> {{ $item->prodi_count ?? $item->prodis->count() }} Program Studi</span>
-                            <iconify-icon icon="solar:arrow-right-linear"
-                                class="size-4 group-hover:translate-x-1 transition-transform"></iconify-icon>
+
+                    <!-- Content -->
+                    <div class="relative z-10">
+                        <!-- Logo Fakultas (ukuran lebih kecil agar card tidak terlalu besar) -->
+                        <div class="mb-5 mx-auto w-28 h-28 flex items-center justify-center">
+                            <img src="{{ Storage::url($item->logo) }}" alt="{{ $item->name }} Logo"
+                                class="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500 shadow-md">
                         </div>
+
+                        <!-- Nama Fakultas (Tengah) -->
+                        <h3
+                            class="text-xl font-heading font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                            {{ $item->name }}
+                        </h3>
+
+                        <!-- Deskripsi: Full tanpa limit, rata kiri -->
+                        <div class="text-sm text-muted-foreground mb-6 leading-relaxed text-left">
+                            {!! $item->deskripsi !!}
+                        </div>
+
+                        <!-- Jumlah Prodi -->
+                        <p class="text-sm text-muted-foreground mb-6">
+                            <span class="font-bold text-base text-primary">
+                                {{ $item->prodi_count ?? $item->prodis->count() }}
+                            </span>
+                            Program Studi
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-primary/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left">
                     </div>
                 </a>
             @endforeach
+
+            <!-- Empty State -->
+            @if ($fakultas->isEmpty())
+                <div class="col-span-full text-center py-20">
+                    <iconify-icon icon="solar:buildings-bold-duotone"
+                        class="size-32 text-muted-foreground/20 mx-auto mb-8"></iconify-icon>
+                    <h3 class="text-2xl font-heading font-semibold text-muted-foreground mb-4">
+                        Belum Ada Fakultas
+                    </h3>
+                    <p class="text-lg text-muted-foreground max-w-md mx-auto">
+                        Data fakultas akan segera ditambahkan.
+                    </p>
+                </div>
+            @endif
         </div>
 
         <!-- Help Section -->

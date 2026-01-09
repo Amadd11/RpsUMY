@@ -90,7 +90,7 @@ class RpsRepository
     /**
      * Mengambil data RPS lengkap dengan semua relasi yang dibutuhkan view.
      */
-    public function getRpsWithRelations(int $courseId)
+    public function getRpsWithRelations(int $courseId): ?Rps
     {
         return Rps::with([
             'dosen',

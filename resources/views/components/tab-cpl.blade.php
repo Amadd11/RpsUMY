@@ -1,8 +1,8 @@
 <div class="bg-card rounded-3xl p-6 md:p-8 shadow-xl border border-border/50 space-y-10">
 
     <div class="flex items-center gap-3">
-        <div class="p-2 bg-linear-to-br from-primary to-primary/80 rounded-xl shadow-md">
-            <iconify-icon icon="solar:target-bold" class="size-5 text-primary-foreground"></iconify-icon>
+        <div class="p-2 bg-linear-to-br from-accent to-accent/80 rounded-xl shadow-md">
+            <iconify-icon icon="solar:branching-paths-bold" class="size-5 text-accent-foreground"></iconify-icon>
         </div>
         <h2 class="text-xl font-bold tracking-tight text-foreground">
             Capaian Pembelajaran Lulusan (CPL)
@@ -71,7 +71,7 @@
     {{-- ================= CPL TERPILIH ================= --}}
     @if ($rps && $rps->cpls->isNotEmpty())
         <div class="mt-12 p-1 bg-linear-to-br from-primary/20 via-transparent to-secondary/10 rounded-4xl">
-            <div class="bg-card/80 backdrop-blur-sm border border-white/20 shadow-2xl rounded-[1.8rem] p-6 md:p-8">
+            <div class="bg-card/80 border border-white/20 shadow-2xl rounded-[1.8rem] p-6 md:p-8">
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div class="flex items-center gap-3">
@@ -123,7 +123,7 @@
                                     @endif
                                 </div>
 
-                                <div class="text-sm leading-relaxed text-muted-foreground/90 font-medium italic">
+                                <div class="text-sm leading-relaxed text-muted-foreground/90 font-medium">
                                     {!! $cpl->description !!}
                                 </div>
                             </div>

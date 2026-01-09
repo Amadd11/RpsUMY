@@ -26,9 +26,6 @@ class RpsForm
 {
     public static function configure(Schema $schema): Schema
     {
-        /** -------------------------------------------
-         *  Tahun Ajaran Options
-         * -------------------------------------------- */
         $years = range(2021, 2028);
         $academicYears = [];
         foreach ($years as $year) {
@@ -36,7 +33,6 @@ class RpsForm
         }
 
         return $schema->components([
-
             Select::make('course_id')
                 ->label('Pilih Mata Kuliah')
                 ->relationship(
@@ -63,7 +59,7 @@ class RpsForm
                 ->searchable()
                 ->preload()
                 ->required()
-                ->unique(Rps::class, 'course_id') // Cegah duplikasi via validation (otomatis ignore current record saat edit)
+                ->unique(Rps::class, 'course_id')
                 ->live()
                 ->afterStateHydrated(function (Set $set, $state) {
                     if ($course = Course::find($state)) {
@@ -139,52 +135,39 @@ class RpsForm
                 ->openable()
                 ->downloadable()
                 ->columnSpanFull(),
-            // Action::make('lihat_matriks')
-            //     ->label('Lihat Matriks Kurikulum')
-            //     ->icon('heroicon-o-document-text')
-            //     ->modalWidth('7xl')
-            //     ->modalSubmitAction(false) // Biasanya hanya view, jadi tidak butuh tombol save
-            //     ->modalContent(function ($record) {
-            //         // Memanggil service secara otomatis
-            //         $service = app(\App\Services\DokumenService::class);
-
-            //         // Ambil data menggunakan logika yang sama dengan controller
-            //         $dokumen = $service->getSingleMatriksByProdiId($record->course->prodi_id);
-
-            //         return view('dokumen.index', [
-            //             'dokumen' => $dokumen, // Variabel tunggal untuk modal
-            //             'prodi'   => $record->course->prodi
-            //         ]);
-            //     }),
             Section::make('Capaian Pembelajaran Lulusan (CPL)')
-                ->description('Pilih CPL yang dibebankan pada mata kuliah ini.')
+                ->description('Sebelum memilih CPL, Harap melihat Dokumen OBE pada program studi terkait untuk memastikan kesesuaian CPL dengan RPS yang dibuat.')
                 ->schema([
                     CheckboxList::make('cpls')
                         ->label('CPL')
                         ->relationship(
                             name: 'cpls',
                             titleAttribute: 'code',
-                            modifyQueryUsing: function (Builder $query) {
-                                $user = Auth::user();
+                            modifyQueryUsing: function (Builder $query, callable $get) {
 
-                                // Admin Prodi → CPL prodinya
-                                if ($user->hasRole('Admin Prodi') && $user->prodi_id) {
-                                    $query->where('prodi_id', $user->prodi_id);
+                                $courseId = $get('course_id');
+
+                                // 🚫 Belum pilih mata kuliah → jangan tampilkan CPL
+                                if (! $courseId) {
+                                    $query->whereRaw('1 = 0');
+                                    return $query;
                                 }
 
-                                // Admin Fakultas → CPL prodi dalam fakultasnya
-                                if ($user->hasRole('Admin Fakultas') && $user->fakultas_id) {
-                                    $query->whereHas('prodi', function ($q) use ($user) {
-                                        $q->where('fakultas_id', $user->fakultas_id);
-                                    });
-                                }
+                                $course = Course::find($courseId);
 
-                                return $query;
+                                if ($course?->prodi_id) {
+                                    $query->where('prodi_id', $course->prodi_id);
+                                }
                             }
                         )
-                        ->columns(2)
-                        ->helperText('Pilih satu atau lebih CPL yang sesuai.')
-                        ->required(),
+                        ->helperText(
+                            fn($record) =>
+                            $record?->course?->prodi
+                                ? 'Menampilkan CPL Program Studi: ' . $record->course->prodi->name
+                                : 'Pilih mata kuliah terlebih dahulu'
+                        )
+                        ->required()
+                        ->columnSpanFull(),
                 ])
         ]);
     }

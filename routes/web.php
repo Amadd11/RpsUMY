@@ -25,7 +25,7 @@ Route::prefix('rps')->group(function () {
 });
 
 Route::prefix('dokumen')->group(function () {
-    Route::get('/', [DokumenController::class, 'fakultas'])->name('dokumen.index');
+    Route::get('/fakultas', [DokumenController::class, 'fakultas'])->name('dokumen.index');
     Route::get('/fakultas/{slug}', [DokumenController::class, 'prodi'])->name('dokumen.fakultas');
     Route::get('/prodi/{slug}', [DokumenController::class, 'list'])->name('dokumen.prodi');
 });

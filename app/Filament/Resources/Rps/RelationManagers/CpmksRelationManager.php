@@ -45,7 +45,6 @@ class CpmksRelationManager extends RelationManager
                         $user = Auth::user();
 
                         $query = $livewire->ownerRecord?->cpls();
-
                         if (! $query) {
                             return [];
                         }
@@ -55,39 +54,42 @@ class CpmksRelationManager extends RelationManager
                         }
 
                         if ($user->hasRole('Admin Fakultas')) {
-                            $query->whereHas('prodi', function ($q) use ($user) {
-                                $q->where('fakultas_id', $user->fakultas_id);
-                            });
+                            $query->whereHas(
+                                'prodi',
+                                fn($q) =>
+                                $q->where('fakultas_id', $user->fakultas_id)
+                            );
                         }
 
-                        return $query->pluck('cpls.code', 'cpls.id');
+                        return $query
+                            ->select('cpls.id', 'cpls.code')
+                            ->pluck('cpls.code', 'cpls.id');
                     })
                     ->searchable()
                     ->preload()
                     ->live()
-                    ->afterStateUpdated(function ($state, Set $set) {
-                        $cpl = Cpl::find($state);
-
+                    ->afterStateUpdated(
+                        fn($state, Set $set) =>
                         $set(
                             'cpl_description_preview',
-                            $cpl ? strip_tags($cpl->description) : '-'
-                        );
-                    })
-                    ->afterStateHydrated(function ($state, Set $set) {
-                        if ($cpl = Cpl::find($state)) {
-                            $set('cpl_description_preview', strip_tags($cpl->description));
-                        }
-                    })
+                            $state
+                                ? strip_tags(
+                                    Cpl::whereKey($state)->value('description')
+                                )
+                                : '-'
+                        )
+                    )
                     ->helperText('Hanya CPL yang sudah dipilih pada RPS ini yang akan tampil.'),
+
                 Textarea::make('cpl_description_preview')
                     ->label('Deskripsi CPL')
                     ->disabled()
                     ->dehydrated(false)
-                    ->rows(3)
                     ->formatStateUsing(
                         fn($state, $record) =>
                         strip_tags($state ?: ($record?->cpl?->description ?? ''))
                     )
+                    ->rows(3)
                     ->columnSpanFull(),
                 RichEditor::make('description')
                     ->label('Deskripsi')
@@ -113,6 +115,7 @@ class CpmksRelationManager extends RelationManager
                 TextColumn::make('description')
                     ->label('Deskripsi')
                     ->html()
+                    ->wrap()
                     ->limit(50)
             ])
             ->filters([

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('rps_id')->constrained()->cascadeOnDelete();
             $table->string('tipe');
-            $table->string('referensi');
+            $table->text('referensi');
             $table->timestamps();
         });
     }

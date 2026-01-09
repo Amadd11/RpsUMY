@@ -31,7 +31,6 @@ class TugasRelationManager extends RelationManager
     {
         return $schema
             ->schema([
-                // Basic Information
                 Section::make('Informasi Dasar')
                     ->schema([
                         Grid::make(2)
@@ -49,8 +48,6 @@ class TugasRelationManager extends RelationManager
                     ])
                     ->collapsible()
                     ->columnSpanFull(),
-
-                // Core Assessment Details
                 Section::make('Detail Penilaian Utama')
                     ->schema([
                         RichEditor::make('sub_cpmk')
@@ -67,8 +64,6 @@ class TugasRelationManager extends RelationManager
                     ])
                     ->collapsible()
                     ->columnSpanFull(),
-
-                // Methods and Outputs
                 Section::make('Metode dan Luaran')
                     ->schema([
                         Grid::make(2)
@@ -84,8 +79,6 @@ class TugasRelationManager extends RelationManager
                     ])
                     ->collapsible()
                     ->columnSpanFull(),
-
-                // Evaluation and References
                 Section::make('Evaluasi dan Referensi')
                     ->schema([
                         RichEditor::make('indikator_kriteria_bobot')

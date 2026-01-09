@@ -2,8 +2,8 @@
     <!-- Section Header -->
     <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-            <div class="p-2 bg-linear-to-br from-indigo-500 to-purple-600 rounded-xl shadow-md">
-                <iconify-icon icon="solar:clipboard-check-bold" class="size-5 text-white"></iconify-icon>
+            <div class="p-2 bg-linear-to-br from-accent to-accent/80 rounded-xl shadow-md">
+                <iconify-icon icon="solar:branching-paths-bold" class="size-5 text-accent-foreground"></iconify-icon>
             </div>
             <div>
                 <h2 class="text-xl font-bold tracking-tight text-foreground font-heading">

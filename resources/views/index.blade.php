@@ -49,7 +49,8 @@
                     </div>
 
                     <div class="flex flex-wrap gap-4">
-                        <button
+                        <!-- Mulai Jelajahi -->
+                        <a href="#jelajahi-rps"
                             class="group relative px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold shadow-2xl shadow-primary/30 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden">
                             <div
                                 class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -58,9 +59,10 @@
                             <span class="relative flex items-center justify-center gap-3">
                                 Mulai Jelajahi
                             </span>
-                        </button>
+                        </a>
 
-                        <button
+                        <!-- Tentang Website -->
+                        <a href="{{ route('about') }}"
                             class="group relative px-8 py-4 bg-accent text-primary-foreground rounded-2xl font-bold shadow-2xl shadow-primary/30 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden">
                             <div
                                 class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -69,7 +71,7 @@
                             <span class="relative flex items-center justify-center gap-3">
                                 Tentang Website
                             </span>
-                        </button>
+                        </a>
                     </div>
 
                     <!-- Stats/Trust Badges -->
@@ -109,11 +111,13 @@
                     </div>
 
                     <!-- Floating Badges -->
-                    <div class="absolute -top-6 -right-6 bg-accent p-4 rounded-2xl shadow-xl animate-bounce-slow z-20">
+                    <div
+                        class="absolute -top-6 -right-6 bg-accent w-16 h-16 rounded-3xl shadow-xl animate-bounce-slow z-20 flex items-center justify-center">
                         <iconify-icon icon="solar:star-bold" class="text-white size-6"></iconify-icon>
                     </div>
                     <div class="absolute -bottom-6 -left-6 bg-primary p-4 rounded-2xl shadow-xl animate-bounce-slow z-20">
-                        <iconify-icon icon="solar:rocket-bold" class="text-white size-6"></iconify-icon>
+                        <iconify-icon icon="solar:rocket-bold" class="text-white" width="32" height="32">
+                        </iconify-icon>
                     </div>
                 </div>
             </div>
@@ -161,10 +165,9 @@
             {{-- Fitur 1 --}}
             <div
                 class="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/20 hover:-translate-y-2">
-                <div
-                    class="bg-secondary rounded-2xl p-4 mb-6 w-fit mx-auto group-hover:bg-primary transition-colors duration-500">
-                    <iconify-icon icon="solar:document-add-bold-duotone"
-                        class="size-9 text-primary group-hover:text-primary-foreground transition-colors"></iconify-icon>
+                <div class="mb-4 mx-auto w-24 h-24 flex items-center justify-center">
+                    <img src="{{ asset('assets/images/icons/clipboard.png') }}" alt=""
+                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl">
                 </div>
                 <h3 class="text-xl font-bold mb-3 text-foreground">Akses Digital RPS</h3>
                 <p class="text-muted-foreground text-sm leading-relaxed">
@@ -175,10 +178,9 @@
             {{-- Fitur 2 --}}
             <div
                 class="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/20 hover:-translate-y-2">
-                <div
-                    class="bg-accent/10 rounded-2xl p-4 mb-6 w-fit mx-auto group-hover:bg-accent transition-colors duration-500">
-                    <iconify-icon icon="solar:minimalistic-magnifer-zoom-in-bold-duotone"
-                        class="size-9 text-accent group-hover:text-accent-foreground transition-colors"></iconify-icon>
+                <div class="mb-4 mx-auto w-24 h-24 flex items-center justify-center">
+                    <img src="{{ asset('assets/images/icons/search.png') }}" alt=""
+                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl">
                 </div>
                 <h3 class="text-xl font-bold mb-3 text-foreground">Pencarian Cerdas</h3>
                 <p class="text-muted-foreground text-sm leading-relaxed">
@@ -189,10 +191,9 @@
             {{-- Fitur 3 --}}
             <div
                 class="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-border hover:border-secondary/20 hover:-translate-y-2">
-                <div
-                    class="bg-secondary rounded-2xl p-4 mb-6 w-fit mx-auto group-hover:bg-secondary-foreground transition-colors duration-500">
-                    <iconify-icon icon="solar:restart-bold-duotone"
-                        class="size-9 text-secondary-foreground group-hover:text-secondary transition-colors"></iconify-icon>
+                <div class="mb-4 mx-auto w-24 h-24 flex items-center justify-center">
+                    <img src="{{ asset('assets/images/icons/sync.png') }}" alt=""
+                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl">
                 </div>
                 <h3 class="text-xl font-bold mb-3 text-foreground">Sinkronisasi Real-time</h3>
                 <p class="text-muted-foreground text-sm leading-relaxed">
@@ -203,10 +204,9 @@
             {{-- Fitur 4 --}}
             <div
                 class="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-border hover:border-muted/20 hover:-translate-y-2">
-                <div
-                    class="bg-muted rounded-2xl p-4 mb-6 w-fit mx-auto group-hover:bg-muted-foreground transition-colors duration-500">
-                    <iconify-icon icon="solar:verified-check-bold-duotone"
-                        class="size-9 text-muted-foreground group-hover:text-muted transition-colors"></iconify-icon>
+                <div class="mb-4 mx-auto w-24 h-24 flex items-center justify-center">
+                    <img src="{{ asset('assets/images/icons/checklist.png') }}" alt=""
+                        class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl">
                 </div>
                 <h3 class="text-xl font-bold mb-3 text-foreground">Standar Mutu</h3>
                 <p class="text-muted-foreground text-sm leading-relaxed">
@@ -217,7 +217,7 @@
     </section>
 
     {{-- SECTION: JELAJAHI FAKULTAS --}}
-    <section class="bg-secondary/50 px-4 py-24 relative overflow-hidden">
+    <section id="jelajahi-rps" class="bg-secondary/50 px-4 py-24 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/20 to-transparent"></div>
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center mb-16">
@@ -229,7 +229,7 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($fakultas as $item)
+                @forelse ($fakultas as $item)
                     <a href="{{ route('rps.prodi', $item->slug) }}"
                         class="group relative bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border hover:border-primary/30 hover:-translate-y-2 flex flex-col">
 
@@ -261,7 +261,21 @@
                             </iconify-icon>
                         </div>
                     </a>
-                @endforeach
+                @empty
+                    {{-- Empty State jika data belum ada --}}
+                    <div class="col-span-full py-20 text-center">
+                        <iconify-icon icon="solar:ghost-bold-duotone" class="size-20 text-slate-200 mb-4"></iconify-icon>
+                        <p class="text-slate-400 font-bold uppercase tracking-widest">Data Fakultas Belum Tersedia</p>
+                    </div>
+                @endforelse
+            </div>
+            <div class="mt-10 text-center">
+                <a href="{{ route('rps.fakultas') }}"
+                    class="group inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                    Lihat Fakultas Lain
+                    <iconify-icon icon="solar:arrow-right-up-linear"
+                        class="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></iconify-icon>
+                </a>
             </div>
         </div>
     </section>

@@ -39,9 +39,10 @@ class RencanaRelationManager extends RelationManager
                     ->schema([
                         TextInput::make('week')
                             ->label('Minggu ke-')
-                            ->required()
-                            ->maxLength(255),
-
+                            ->numeric()
+                            ->minValue(1)
+                            ->maxValue(16)
+                            ->required(),
                         Select::make('subcpmk_id')
                             ->label('Sub-CPMK')
                             ->required()
@@ -103,6 +104,8 @@ class RencanaRelationManager extends RelationManager
                         TextInput::make('bobot')
                             ->label('Bobot Penilaian (%)')
                             ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
                             ->suffix('%'),
                     ]),
             ])->columns(1);

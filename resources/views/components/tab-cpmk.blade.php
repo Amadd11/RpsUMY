@@ -1,7 +1,7 @@
 <div class="bg-card rounded-3xl p-6 md:p-8 shadow-xl border border-border/50 space-y-8">
     <div class="flex items-center gap-3">
         <div class="p-2 bg-linear-to-br from-primary to-primary/80 rounded-xl shadow-md">
-            <iconify-icon icon="solar:list-check-bold" class="size-5 text-primary-foreground"></iconify-icon>
+            <iconify-icon icon="solar:book-open-bold" class="size-5 text-primary-foreground"></iconify-icon>
         </div>
         <h2 class="text-xl font-bold tracking-tight text-foreground">
             Capaian Pembelajaran Mata Kuliah (CPMK)
@@ -61,7 +61,7 @@
                         <div class="space-y-4">
                             @foreach ($cpmks as $cpmk)
                                 <div
-                                    class="p-4 border-l-4 border-primary/50 bg-card rounded-r-xl transition-all duration-200 hover:bg-primary/5 border border-border/30">
+                                    class="p-4 border-l-4 border-primary/50 bg-card rounded-r-xl transition-all duration-200 hover:bg-primary/5 border">
 
                                     <div class="flex justify-between items-start mb-2">
                                         <h4 class="font-bold text-foreground flex items-center gap-2">

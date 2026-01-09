@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\Rps\Tables;
 
+use App\Models\Rps;
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BadgeColumn;
 
 class RpsTable
 {
@@ -37,12 +39,26 @@ class RpsTable
                     ->sortable(),
                 TextColumn::make('tgl_penyusunan')
                     ->label('Tanggal Penyusunan')
+                    ->date('d M Y')
                     ->sortable(),
-                TextColumn::make('tahun_ajaran')
-                    ->label('Tahun Ajaran')
-                    ->sortable(),
+                TextColumn::make('status')
+                    ->label('Status Data')
+                    ->badge()
+                    ->getStateUsing(function (Rps $record) {
+                        $isComplete = $record->cpls->isNotEmpty() &&
+                            $record->rencanas->isNotEmpty() &&
+                            $record->cpmks->isNotEmpty();
+
+                        return $isComplete ? 'Lengkap' : 'Belum Lengkap';
+                    })
+                    ->color(fn(string $state): string => match ($state) {
+                        'Lengkap' => 'success',
+                        'Belum Lengkap' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi')
+                    ->html()
                     ->limit(50) // Truncate panjang
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')

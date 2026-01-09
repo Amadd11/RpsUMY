@@ -14,6 +14,11 @@ class CplsTable
     {
         return $table
             ->columns([
+                TextColumn::make('prodi.fakultas.name')
+                    ->label('Fakultas')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('prodi.name')
                     ->label('Program Studi')
                     ->searchable()

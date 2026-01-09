@@ -4,7 +4,7 @@
         <div class="flex items-center justify-between h-20">
             <!-- Logo & Title -->
             <div class="flex items-center gap-4">
-                <img alt="UMY Logo" src="{{ asset('assets/logo.png') }}"
+                <img alt="UMY Logo" src="{{ asset('assets/images/logo/logo.png') }}"
                     class="h-12 w-12 object-contain hover:scale-105 transition-transform duration-300" />
                 <div class="border-l-2 border-gray-500/50 pl-4 py-1">
                     <div class="font-heading font-bold text-base md:text-xl text-primary leading-tight tracking-tight">

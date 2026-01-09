@@ -92,7 +92,7 @@
     <!-- Download Section (Opsional jika ada file PDF) -->
     @if ($rps->file_pdf)
         <div class="flex justify-center pt-4">
-            <a href="{{ asset('storage/' . $rps->file_pdf) }}" target="_blank" rel="noopener noreferrer"
+            <a href="{{ asset(Storage::url($rps->file_pdf)) }}" target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-8 py-3 font-bold text-primary-foreground transition-all duration-300 transform shadow-xl bg-linear-to-r from-primary to-primary/80 rounded-2xl hover:from-accent hover:to-accent/80 hover:scale-105 active:scale-95 border border-primary/20">
                 <iconify-icon icon="solar:download-bold" class="size-5"></iconify-icon>
                 Unduh Dokumen RPS (PDF)

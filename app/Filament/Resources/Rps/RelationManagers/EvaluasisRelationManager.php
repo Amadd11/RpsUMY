@@ -38,6 +38,7 @@ class EvaluasisRelationManager extends RelationManager
                 TextInput::make('week')
                     ->label('Minggu Ke-')
                     ->numeric()
+                    ->minValue(1)
                     ->required(),
 
                 Select::make('cpl_id')
@@ -45,57 +46,46 @@ class EvaluasisRelationManager extends RelationManager
                     ->options(
                         fn(RelationManager $livewire) =>
                         $livewire->ownerRecord
-                            ? $livewire->ownerRecord
-                            ->cpls()
-                            ->pluck('cpls.code', 'cpls.id')
-                            ->toArray()
-                            : []
+                            ? $livewire->ownerRecord->cpls()->pluck('cpls.code', 'cpls.id')
+                            : collect()
                     )
                     ->searchable()
                     ->preload()
                     ->live()
                     ->afterStateUpdated(fn(Set $set) => [
                         $set('cpmk_id', null),
-                        $set('sub_cpmk_id', null),
+                        $set('subcpmk_id', null),
                     ])
                     ->required(),
 
                 Select::make('cpmk_id')
                     ->label('CPMK Terkait')
-                    ->options(function (Get $get, RelationManager $livewire): Collection {
-                        $cplId = $get('cpl_id');
-                        $rpsId = $livewire->ownerRecord?->id;
-
-                        if (! $cplId || ! $rpsId) {
-                            return collect();
-                        }
-
-                        return Cpmk::where('cpl_id', $cplId)
-                            ->where('rps_id', $rpsId)
+                    ->options(function (Get $get, RelationManager $livewire) {
+                        return Cpmk::query()
+                            ->when(
+                                $get('cpl_id') && $livewire->ownerRecord,
+                                fn($q) => $q
+                                    ->where('cpl_id', $get('cpl_id'))
+                                    ->where('rps_id', $livewire->ownerRecord->id)
+                            )
                             ->pluck('code', 'id');
                     })
                     ->searchable()
                     ->preload()
                     ->live()
-                    ->afterStateUpdated(fn(Set $set) => $set('sub_cpmk_id', null))
+                    ->afterStateUpdated(fn(Set $set) => $set('subcpmk_id', null))
                     ->required(),
 
                 Select::make('subcpmk_id')
                     ->label('Sub-CPMK')
-                    ->options(function (Get $get): Collection {
-                        $cpmkId = $get('cpmk_id');
-
-                        if (! $cpmkId) {
-                            return collect();
-                        }
-
-                        return Subcpmk::where('cpmk_id', $cpmkId)
-                            ->pluck('code', 'id');
-                    })
+                    ->options(
+                        fn(Get $get) =>
+                        Subcpmk::where('cpmk_id', $get('cpmk_id'))
+                            ->pluck('code', 'id')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
-
                 RichEditor::make('indikator')
                     ->label('Indikator Penilaian')
                     ->columnSpanFull(),

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('subcpmks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cpmk_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('rps_id')->constrained()->cascadeOnDelete();
             $table->string('code');
             $table->text('description');
             $table->timestamps();
