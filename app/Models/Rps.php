@@ -70,7 +70,7 @@ class Rps extends Model
 
     public function subCpmks()
     {
-        return $this->hasMany(SubCpmk::class);
+        return $this->hasMany(Subcpmk::class);
     }
 
     public function cpls()

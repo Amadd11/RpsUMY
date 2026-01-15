@@ -89,14 +89,11 @@
         </div>
     </div>
 
-    <!-- Download Section (Opsional jika ada file PDF) -->
-    @if ($rps->file_pdf)
-        <div class="flex justify-center pt-4">
-            <a href="{{ asset(Storage::url($rps->file_pdf)) }}" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-8 py-3 font-bold text-primary-foreground transition-all duration-300 transform shadow-xl bg-linear-to-r from-primary to-primary/80 rounded-2xl hover:from-accent hover:to-accent/80 hover:scale-105 active:scale-95 border border-primary/20">
-                <iconify-icon icon="solar:download-bold" class="size-5"></iconify-icon>
-                Unduh Dokumen RPS (PDF)
-            </a>
-        </div>
-    @endif
+    <div class="flex justify-center pt-6 pb-2">
+        <a href="{{ route('rps.export.pdf', $rps) }}"
+            class="inline-flex items-center justify-center px-8 py-3.5 bg-linear-to-r from-primary to-primary/85 text-primary-foreground font-semibold text-base rounded-2xl shadow-lg shadow-primary/25  hover:shadow-xl hover:shadow-primary/35
+              hover:from-primary hover:to-primary/95 transition-all duration-300 transform hover:scale-[1.03] active:scale-95 border border-primary/20 hover:border-primary/40 min-w-[220px] text-center">
+            Export RPS ke PDF
+        </a>
+    </div>
 </div>

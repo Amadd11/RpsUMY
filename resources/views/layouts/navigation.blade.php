@@ -3,18 +3,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-20">
             <!-- Logo & Title -->
-            <div class="flex items-center gap-4">
+            <a href="{{ route('index') }}" class="flex items-center gap-4 group">
                 <img alt="UMY Logo" src="{{ asset('assets/images/logo/logo.png') }}"
-                    class="h-12 w-12 object-contain hover:scale-105 transition-transform duration-300" />
+                    class="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-105" />
+
                 <div class="border-l-2 border-gray-500/50 pl-4 py-1">
                     <div class="font-heading font-bold text-base md:text-xl text-primary leading-tight tracking-tight">
                         Universitas Muhammadiyah Yogyakarta
                     </div>
-                    <div class="text-[10px] md:text-sm font-medium text-muted-foreground tracking-widest font-sans ">
+                    <div class="text-[10px] md:text-sm font-medium text-muted-foreground tracking-widest font-sans">
                         Sistem RPS Digital
                     </div>
                 </div>
-            </div>
+            </a>
+
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-1">

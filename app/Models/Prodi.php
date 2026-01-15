@@ -13,7 +13,11 @@ class Prodi extends Model
         'slug',
         'deskripsi',
         'logo',
-        'fakultas_id'
+        'fakultas_id',
+        'akreditasi',
+        'jenjang',
+        'total_sks',
+        'total_semester',
     ];
 
     public function dokumen()

@@ -42,25 +42,43 @@
                     <tbody class="divide-y divide-border/50">
                         @forelse ($dokumens as $dokumen)
                             <tr class="group hover:bg-primary/5 transition-all duration-300">
+                                {{-- Judul --}}
                                 <td class="px-8 py-6">
                                     <div class="flex items-center gap-4">
                                         <div
                                             class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                            <iconify-icon icon="solar:document-text-bold-duotone"
-                                                class="size-5 text-primary"></iconify-icon>
+                                            <iconify-icon
+                                                icon="{{ $dokumen->tipe === 'url' ? 'solar:link-bold-duotone' : 'solar:document-text-bold-duotone' }}"
+                                                class="size-5 text-primary">
+                                            </iconify-icon>
                                         </div>
+
                                         <span
                                             class="font-medium text-foreground group-hover:text-primary transition-colors">
                                             {{ $dokumen->judul }}
                                         </span>
                                     </div>
                                 </td>
+
+                                {{-- Prodi --}}
                                 <td class="px-8 py-6 text-muted-foreground">
                                     {{ $dokumen->prodi->name ?? 'Umum' }}
                                 </td>
+
+                                {{-- Aksi --}}
                                 <td class="px-8 py-6 text-center">
-                                    <a href="{{ asset('storage/' . $dokumen->file) }}" target="_blank"
-                                        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary/10 text-primary font-semibold hover:bg-primary/20 group-hover:opacity-100 opacity-80 transition-all duration-300">
+                                    @php
+                                        $url =
+                                            $dokumen->tipe === 'url'
+                                                ? $dokumen->file_url
+                                                : asset('storage/' . $dokumen->file_path);
+                                    @endphp
+
+                                    <a href="{{ $url }}" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl
+                       bg-primary/10 text-primary font-semibold
+                       hover:bg-primary/20 opacity-80 group-hover:opacity-100
+                       transition-all duration-300">
                                         Lihat Dokumen
                                         <iconify-icon icon="solar:alt-arrow-right-linear" class="size-4"></iconify-icon>
                                     </a>

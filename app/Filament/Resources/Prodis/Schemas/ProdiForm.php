@@ -27,6 +27,23 @@ class ProdiForm
                 RichEditor::make('deskripsi')
                     ->label('Deskripsi Prodi')
                     ->columnSpanFull(),
+                TextInput::make('akreditasi')
+                    ->placeholder('A / Unggul')
+                    ->maxLength(20),
+
+                Select::make('jenjang')
+                    ->options([
+                        'D3' => 'D3',
+                        'S1' => 'S1',
+                        'S2' => 'S2',
+                    ]),
+
+                TextInput::make('total_sks')
+                    ->minValue(0)
+                    ->numeric(),
+                TextInput::make('total_semester')
+                    ->minValue(0)
+                    ->numeric(),
                 FileUpload::make('logo')
                     ->image()
                     ->disk('public')

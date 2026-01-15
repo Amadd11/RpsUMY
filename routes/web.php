@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\RpsExportController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
@@ -23,6 +24,9 @@ Route::prefix('rps')->group(function () {
     Route::get('/prodi/course/{slug}', [RpsController::class, 'showRps'])
         ->name('rps.course.show');
 });
+
+Route::get('/rps/{rps}/export-pdf', [RpsExportController::class, 'pdf'])
+    ->name('rps.export.pdf');
 
 Route::prefix('dokumen')->group(function () {
     Route::get('/fakultas', [DokumenController::class, 'fakultas'])->name('dokumen.index');

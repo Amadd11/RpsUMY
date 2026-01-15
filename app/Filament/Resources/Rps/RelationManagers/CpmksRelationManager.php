@@ -38,7 +38,6 @@ class CpmksRelationManager extends RelationManager
                     ->label('Judul CPMK')
                     ->required()
                     ->columnSpanFull(),
-
                 Select::make('cpl_id')
                     ->label('Terkait CPL (Induk)')
                     ->options(function ($livewire) {

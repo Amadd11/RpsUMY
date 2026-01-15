@@ -21,7 +21,7 @@ class DokumensTable
                 TextColumn::make('judul')
                     ->label('Judul Dokumen')
                     ->searchable(),
-                TextColumn::make('file')
+                TextColumn::make('file_path')
                     ->label('Nama File'),
                 TextColumn::make('created_at')
                     ->dateTime()

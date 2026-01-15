@@ -63,7 +63,7 @@ class CplsRelationManager extends RelationManager
                 TextColumn::make('description')
                     ->html()
                     ->label('Deskripsi')
-                    ->limit(60),
+                    ->wrap(),
 
                 TextColumn::make('taksonomi')
                     ->label('Taksonomi')

@@ -10,7 +10,9 @@ class Dokumen extends Model
     protected $fillable = [
         'prodi_id',
         'judul',
-        'file'
+        'tipe',
+        'file_path',
+        'file_url',
     ];
 
     public function prodi()

@@ -43,13 +43,31 @@ class DokumenForm
                     ->placeholder('Contoh: Panduan Akademik 2024')
                     ->maxLength(255)
                     ->required(),
-                FileUpload::make('file')
-                    ->label('File PDF')
+                Select::make('tipe')
+                    ->options([
+                        'upload' => 'Upload File',
+                        'url' => 'URL / Google Drive',
+                    ])
+                    ->reactive()
+                    ->required(),
+
+                FileUpload::make('file_path')
+                    ->label('Upload File')
                     ->disk('public')
                     ->directory('dokumen-prodi')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize() 
-                    ->required(),
+                    ->acceptedFileTypes([
+                        'application/pdf',
+                        'image/png',
+                        'image/jpeg',
+                    ])
+                    ->visible(fn($get) => $get('tipe') === 'upload')
+                    ->required(fn($get) => $get('tipe') === 'upload'),
+
+                TextInput::make('file_url')
+                    ->label('URL Dokumen (Google Drive)')
+                    ->url()
+                    ->visible(fn($get) => $get('tipe') === 'url')
+                    ->required(fn($get) => $get('tipe') === 'url'),
             ]);
     }
 }

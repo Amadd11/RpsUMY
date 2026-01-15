@@ -37,10 +37,29 @@ class CourseForm
                     ->placeholder('1'),
                 Select::make('prodi_id')
                     ->label('Prodi')
-                    ->relationship('prodi', 'name')
+                    ->relationship(
+                        name: 'prodi',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: function ($query) {
+                            $user = auth()->user();
+
+                            // Admin fakultas → hanya prodi dalam fakultasnya
+                            if ($user->hasRole('Admin Fakultas') && $user->fakultas_id) {
+                                $query->where('fakultas_id', $user->fakultas_id);
+                            }
+
+                            // Admin prodi → hanya 1 prodi (punya dia)
+                            if ($user->hasRole('Admin Prodi') && $user->prodi_id) {
+                                $query->where('id', $user->prodi_id);
+                            }
+                        }
+                    )
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->default(fn() => auth()->user()->prodi_id)
+                    ->disabled(fn() => auth()->user()->hasRole('Admin Prodi'))
+                    ->dehydrated()
+                    ->required()
             ]);
     }
 }
