@@ -5,6 +5,7 @@ use App\Http\Controllers\RpsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\RpsExportController;
+use App\Http\Controllers\RpsChatbotController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
@@ -27,6 +28,9 @@ Route::prefix('rps')->group(function () {
 
 Route::get('/rps/{rps}/export-pdf', [RpsExportController::class, 'pdf'])
     ->name('rps.export.pdf');
+
+Route::post('/chatbot/ask',    [RpsChatbotController::class, 'ask'])->name('chatbot.ask');
+Route::post('/chatbot/stream', [RpsChatbotController::class, 'stream'])->name('chatbot.stream');
 
 Route::prefix('dokumen')->group(function () {
     Route::get('/fakultas', [DokumenController::class, 'fakultas'])->name('dokumen.index');

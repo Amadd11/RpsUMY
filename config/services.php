@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'qwen' => [
+        'api_key'  => env('QWEN_API_KEY'),
+        'endpoint' => env('QWEN_ENDPOINT', 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions'),
+        'model'    => env('QWEN_MODEL', 'qwen-turbo'),
+    ],
 ];

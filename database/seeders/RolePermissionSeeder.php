@@ -27,6 +27,10 @@ class RolePermissionSeeder extends Seeder
             'name' => 'Dosen'
         ]);
 
+        $superadmin = Role::create([
+            'name' => 'super_admin'
+        ]);
+
         $user = User::create([
             'name' => 'superadmin',
             'email' => 'superadmin@mail.com',

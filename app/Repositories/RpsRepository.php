@@ -116,4 +116,12 @@ class RpsRepository
             ->orderBy('code')
             ->get();
     }
+    
+    public function getRpsWithRelationsByRpsId(int $rpsId): ?Rps
+    {
+        return Rps::with([
+            'course.prodi',
+            'cpmks.subCpmks',
+        ])->find($rpsId);
+    }
 }
